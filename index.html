@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jameel Hilal | Performance Media Strategist</title>
+<meta name="description" content="Jameel Hilal, Performance Media Strategist in Kuwait. Research-driven video ads that speak to your buyer and sell.">
+<meta property="og:title" content="Jameel Hilal | Performance Media Strategist">
+<meta property="og:description" content="Video ads that speak to your buyer and sell. 14x return for Jarib Academy. 7,468 KD in sales for Doki Doki.">
+<meta property="og:image" content="videos/jarib-winner.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FAF6EB; --ink:#242423; --ink-2:#1d1d1d; --lav:#DDD4F6; --purple:#6945D8;
+  --blue:#5147EC; --lime:#ECF86E; --orange:#F37842; --white:#fff; --muted:#5d5b55;
+  --r-sm:10px; --r:14px; --r-lg:24px; --pill:320px;
+  --font:"Sora",system-ui,sans-serif; --gut:16px; --max:1180px;
+  --shadow:0 2px 6px rgba(0,0,0,.06),0 16px 54px -1px rgba(0,0,0,.18);
+}
+html[dir=rtl]{--font:"IBM Plex Sans Arabic","Sora",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--cream);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+@media(min-width:768px){:root{--gut:32px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:var(--pill);padding:12px 22px;font-weight:600;font-size:15px;transition:transform .2s,box-shadow .2s;cursor:pointer;border:0;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--lime)}
+.btn-white{background:var(--white);color:var(--purple)}
+.btn-purple{background:var(--purple);color:var(--white)}
+.arrow{display:inline-block;transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+html[dir=rtl] .arrow{transform:scaleX(-1)}
+html[dir=rtl] .btn:hover .arrow{transform:scaleX(-1) translateX(4px)}
+
+/* nav */
+.nav{position:sticky;top:14px;z-index:50;padding:0 var(--gut)}
+.nav-in{max-width:1260px;margin:14px auto 0;background:var(--purple);border-radius:var(--pill);display:flex;align-items:center;gap:16px;padding:10px 12px 10px 20px;box-shadow:var(--shadow)}
+html[dir=rtl] .nav-in{padding:10px 20px 10px 12px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:700;font-size:17px;white-space:nowrap}
+.logo-mark{width:32px;height:32px;border-radius:50%;background:var(--white);color:var(--purple);display:grid;place-items:center;font-weight:800;font-size:14px}
+.nav-links{display:none;gap:24px;margin-inline-start:auto;color:var(--white);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.nav-links a{opacity:.9}.nav-links a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+.nav-actions{display:flex;gap:8px;align-items:center;margin-inline-start:auto}
+.lang{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:var(--white);border-radius:var(--pill);padding:8px 14px;font-weight:600;font-size:13px;cursor:pointer;font-family:"IBM Plex Sans Arabic","Sora",sans-serif}
+.lang:hover{background:rgba(255,255,255,.12)}
+.nav .btn{padding:10px 18px;font-size:14px}
+.nav .btn .full{display:none}
+@media(min-width:960px){.nav-links{display:flex}.nav-actions{margin-inline-start:24px}.nav .btn .full{display:inline}.nav .btn .short{display:none}}
+
+/* hero */
+.hero{padding:56px 0 72px;background:radial-gradient(circle at 1px 1px,rgba(105,69,216,.10) 1px,transparent 0) 0 0/22px 22px}
+.hero-grid{display:grid;gap:48px;align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr}}
+.eyebrow{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:14px}
+.eyebrow b{color:var(--purple);font-weight:700}
+h1{font-size:clamp(36px,6.2vw,62px);line-height:1.02;font-weight:800;text-transform:uppercase;letter-spacing:-.02em}
+html[dir=rtl] h1{text-transform:none;line-height:1.25;letter-spacing:0}
+h1 .hl{color:var(--purple)}
+.lead{margin:20px 0 28px;font-size:16px;color:var(--muted);max-width:520px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.badge{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:500}
+.badge svg{width:34px}
+
+/* phone */
+.phone-stage{position:relative;max-width:360px;margin:0 auto;width:100%}
+.phone{position:relative;border:3px solid var(--purple);border-radius:36px;padding:10px;background:var(--white);box-shadow:var(--shadow)}
+.phone::before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:70px;height:6px;border-radius:6px;background:var(--lav);z-index:2}
+.phone video,.phone img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:26px;background:var(--ink)}
+.float{position:absolute;background:var(--white);border:1.5px solid var(--purple);border-radius:var(--pill);padding:8px 14px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite;z-index:3}
+.float b{color:var(--purple);font-size:15px;margin-inline-end:6px}
+.f1{top:12%;inset-inline-start:-18%}.f2{top:44%;inset-inline-end:-16%;animation-delay:-1.6s}.f3{bottom:14%;inset-inline-start:-12%;animation-delay:-3.2s}
+@media(max-width:520px){.f1{inset-inline-start:-4%}.f2{inset-inline-end:-4%}.f3{inset-inline-start:-2%}}
+.dot{position:absolute;border-radius:50%;background:var(--lime);border:2px solid var(--purple);animation:bob 6s ease-in-out infinite}
+.d1{width:26px;height:26px;top:-10px;inset-inline-end:14%}.d2{width:18px;height:18px;bottom:-6px;inset-inline-end:30%;animation-delay:-2s}
+.sound{position:absolute;bottom:22px;inset-inline-end:22px;z-index:4;background:rgba(36,36,35,.8);color:#fff;border:0;border-radius:var(--pill);padding:7px 12px;font:600 12px var(--font);cursor:pointer}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* marquee */
+.marquee{background:var(--ink);color:var(--white);overflow:hidden;padding:22px 0;direction:ltr}
+.track{display:flex;gap:48px;width:max-content;animation:scroll 32s linear infinite}
+.track span{font-size:clamp(20px,3vw,30px);font-weight:700;letter-spacing:-.01em;display:flex;align-items:center;gap:48px;white-space:nowrap}
+.track span::after{content:"";width:14px;height:14px;border-radius:50%;background:var(--lime)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* section heads */
+section{scroll-margin-top:90px}
+.sec{padding:84px 0}
+.h2{font-size:clamp(28px,4.4vw,46px);line-height:1.1;font-weight:700;letter-spacing:-.02em;text-align:center}
+.h2.up{text-transform:uppercase;font-weight:800}
+html[dir=rtl] .h2.up{text-transform:none}
+.sub{text-align:center;margin:14px auto 0;max-width:620px;font-size:15px}
+.lavsec{background:var(--lav)}
+.lavsec .h2{color:var(--purple)}
+.dark{background:var(--ink);color:var(--white)}
+.purple{background:var(--purple);color:var(--white)}
+
+/* process */
+.process{margin-top:56px;display:grid;gap:18px;counter-reset:s;position:relative}
+@media(min-width:720px){.process{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.process{grid-template-columns:repeat(3,1fr)}}
+.step{background:var(--cream);border-radius:var(--r);padding:24px;position:relative;box-shadow:0 7px 23px rgba(53,35,183,.06)}
+.step-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.num{width:38px;height:38px;border-radius:50%;background:var(--purple);color:var(--white);display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
+.step h3{color:var(--purple);font-size:17px;font-weight:700}
+.step p{font-size:14px;color:#3b3a36}
+.step .tag{position:absolute;top:-12px;inset-inline-end:18px;background:var(--ink);color:var(--lime);font-size:11px;font-weight:600;border-radius:var(--pill);padding:5px 12px}
+.engine{margin:36px auto 0;width:max-content;max-width:100%;background:var(--purple);color:#fff;border-radius:var(--pill);padding:16px 30px;text-align:center;font-weight:700;font-size:18px;box-shadow:0 0 0 10px rgba(105,69,216,.18),0 0 0 22px rgba(105,69,216,.08)}
+.engine small{display:block;font-weight:500;font-size:12px;opacity:.85}
+
+/* service cards */
+.cards{margin-top:48px;display:grid;gap:16px}
+@media(min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.cards{grid-template-columns:repeat(4,1fr)}}
+.card{border-radius:var(--r);padding:22px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s}
+.card:hover{transform:translateY(-6px) rotate(-.6deg)}
+.card .ic{width:30px;height:30px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.card .ic svg{width:12px;fill:#fff}
+.card h3{font-size:clamp(22px,2.2vw,28px);line-height:1.1;font-weight:700;margin-top:14px}
+.card p{font-size:14px;margin-top:24px}
+.c-lime{background:var(--lime);color:var(--ink)}
+.c-blue{background:var(--blue);color:#fff}.c-blue .ic,.c-orange .ic{background:#fff}.c-blue .ic svg{fill:var(--blue)}
+.c-orange{background:var(--orange);color:#fff}.c-orange .ic svg{fill:var(--orange)}
+.c-lav{background:var(--lav);color:var(--ink)}.c-lav .ic{background:var(--purple)}
+.extras{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chip{border:1.5px solid rgba(255,255,255,.3);border-radius:var(--pill);padding:8px 16px;font-size:13px;font-weight:500}
+
+/* stats */
+.stats{display:grid;grid-template-columns:1fr}
+@media(min-width:720px){.stats{grid-template-columns:1fr 1fr}}
+.stat{padding:52px 20px;text-align:center}
+.stat:nth-child(1),.stat:nth-child(4){background:var(--cream)}
+.stat:nth-child(2),.stat:nth-child(3){background:var(--lav)}
+@media(max-width:719px){.stat:nth-child(3){background:var(--cream)}.stat:nth-child(4){background:var(--lav)}}
+.stat .big{font-size:clamp(46px,6vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.stat .lbl{margin-top:12px;font-size:14px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+.stat .src{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* ad wall */
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.filt{background:var(--lav);color:var(--purple);border:0;border-radius:6px;padding:7px 14px;font:700 12px var(--font);text-transform:uppercase;letter-spacing:.04em;cursor:pointer;opacity:.6}
+.filt.on{opacity:1;background:var(--lime);color:var(--ink)}
+.wall-wrap{position:relative;margin-top:30px}
+.wall{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px var(--gut) 20px;scrollbar-width:none}
+.wall::-webkit-scrollbar{display:none}
+.ad{flex:0 0 min(250px,72vw);scroll-snap-align:center}
+.ad .phone{padding:7px;border-radius:30px;border-color:var(--lav)}
+.ad .phone::before{top:13px;width:50px;height:5px}
+.ad .phone video,.ad .phone img{border-radius:23px;cursor:pointer}
+.ad .play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.ad .play span{width:56px;height:56px;border-radius:50%;background:rgba(105,69,216,.9);display:grid;place-items:center;transition:opacity .2s}
+.ad .play svg{width:18px;fill:#fff;margin-inline-start:3px}
+.ad.playing .play span{opacity:0}
+.ad-meta{margin-top:14px}
+.ad-meta .pill{display:inline-block;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;border-radius:6px;padding:4px 9px;text-transform:uppercase;letter-spacing:.03em}
+.ad-meta .pill.win{background:var(--orange);color:#fff}
+.ad-meta h4{font-size:15px;margin-top:8px;line-height:1.3}
+.ad-meta p{font-size:13px;opacity:.75;margin-top:4px}
+.navbtn{position:absolute;top:38%;width:44px;height:44px;border-radius:50%;background:var(--lime);border:0;display:none;place-items:center;cursor:pointer;z-index:2}
+.navbtn svg{width:18px}
+.prev{inset-inline-start:8px}.next{inset-inline-end:8px}
+html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
+@media(min-width:900px){.navbtn{display:grid}}
+.ad.hide{display:none}
+
+/* case studies */
+.cases{margin-top:48px;display:grid;gap:24px}
+@media(min-width:960px){.cases{grid-template-columns:1fr 1fr}}
+.case{background:var(--ink-2);border:5px solid var(--lav);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
+.case-top{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:22px;align-items:center}
+.case-top img{border-radius:14px;aspect-ratio:9/16;object-fit:cover}
+.case .kick{display:inline-block;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;text-transform:uppercase}
+.case h3{font-size:clamp(22px,2.4vw,28px);line-height:1.15;margin-top:10px}
+.case .who{font-size:13px;opacity:.7;margin-top:6px}
+.case-body{padding:0 22px 22px;display:flex;flex-direction:column;gap:18px;flex:1}
+.case-body p{font-size:14.5px;opacity:.88}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi{background:rgba(221,212,246,.1);border:1px solid rgba(221,212,246,.25);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:22px;color:var(--lime);direction:ltr;unicode-bidi:isolate;text-align:start}
+.kpi span{font-size:11.5px;opacity:.8}
+.angles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.angles div{background:var(--lav);color:var(--ink);border-radius:10px;padding:10px 12px;font-size:12.5px;font-weight:600}
+.angles div i{font-style:normal;display:block;color:var(--purple);font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.quote{border-inline-start:3px solid var(--lime);padding-inline-start:14px;font-style:italic}
+
+/* about */
+.about{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.about{grid-template-columns:.8fr 1.2fr}}
+.photo{aspect-ratio:4/5;border-radius:var(--r-lg);background:var(--lav);border:3px dashed var(--purple);display:grid;place-items:center;text-align:center;color:var(--purple);font-weight:600;padding:20px;max-width:380px;width:100%;margin:0 auto}
+.about h2{font-size:clamp(28px,4vw,42px);line-height:1.1;color:var(--purple)}
+.about p{margin-top:16px;font-size:16px;color:#3b3a36}
+
+/* faq */
+.faq{max-width:760px;margin:40px auto 0;display:grid;gap:12px}
+.faq details{background:var(--lav);color:var(--ink);border-radius:var(--r-sm);border-inline-start:8px solid #cfc3f3}
+.faq summary{list-style:none;cursor:pointer;padding:15px 20px;font-weight:600;font-size:15px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none;font-size:18px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 20px 18px;font-size:14.5px}
+
+/* final cta */
+.final{padding:110px 0;text-align:center;position:relative}
+.final h2{font-size:clamp(34px,5.4vw,58px);line-height:1.08;color:var(--purple);font-weight:700;letter-spacing:-.02em}
+.final h2 u{text-decoration:none;background:linear-gradient(transparent 78%,var(--lav) 78%)}
+.final p{margin:18px 0 28px;font-weight:600;font-size:17px}
+.spark{position:absolute;color:var(--purple);font-size:28px}
+
+/* footer */
+footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
+.foot{display:grid;gap:36px}
+@media(min-width:800px){.foot{grid-template-columns:1.3fr 1fr 1fr}}
+.foot h5{color:var(--lime);font-size:13px;font-weight:600;text-transform:uppercase;margin-bottom:12px}
+.foot li{list-style:none;margin:6px 0;font-size:14px;opacity:.85}
+.foot .logo{color:#fff}
+.foot .tagline{margin-top:14px;font-size:14px;opacity:.8;max-width:320px}
+.copy{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;opacity:.6}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* floating whatsapp */
+.wa{position:fixed;bottom:18px;inset-inline-end:18px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:var(--shadow)}
+.wa svg{width:28px;fill:#fff}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="#top" class="logo"><span class="logo-mark">JH</span><span data-i18n="name">Jameel Hilal</span></a>
+    <nav class="nav-links">
+      <a href="#process" data-i18n="nav_process">Process</a>
+      <a href="#work" data-i18n="nav_work">My ads</a>
+      <a href="#results" data-i18n="nav_results">Results</a>
+      <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang" id="lang" aria-label="Switch language">العربية</button>
+      <a class="btn btn-white wa-link" href="#"><span class="full" data-i18n="cta_call">Book a call</span><span class="short" data-i18n="cta_short">Talk</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <p class="eyebrow" data-i18n-html="eyebrow">Performance Media Strategist · <b>Kuwait</b></p>
+      <h1 data-i18n-html="h1">Video ads that speak to <span class="hl">your buyer</span> and sell</h1>
+      <p class="lead" data-i18n="lead">I research your ideal customer, write the script, film it, edit it, and run it on Meta. Then I test angles and scale the winner.</p>
+      <div class="hero-cta">
+        <a class="btn btn-dark wa-link" href="#"><span data-i18n="cta_work">Work with me</span> <span class="arrow">→</span></a>
+        <div class="badge">
+          <svg viewBox="0 0 40 24" aria-hidden="true"><path fill="#242423" d="M9.5 3C5 3 2 9.5 2 14.2 2 18 3.9 21 7 21c2.6 0 4.4-2 6.8-6l1.5-2.6 1.4 2.4C19.2 18.9 21.2 21 24 21c3.4 0 5.7-3.2 5.7-7.6C29.7 8.2 26.8 3 22.4 3c-2.5 0-4.4 1.9-6.4 4.9C14 4.9 12 3 9.5 3Zm-.1 3.6c1.5 0 2.8 1.4 4.6 4.3l-1.6 2.6C10.6 16.7 9 18 7.6 18 6.2 18 5.3 16.5 5.3 14c0-3.7 1.9-7.4 4.1-7.4Zm13 0c2.3 0 4 3.3 4 7 0 2.6-.9 4.4-2.6 4.4-1.5 0-2.8-1.6-5-5.4l-.9-1.5c1.7-2.8 3-4.5 4.5-4.5Z"/></svg>
+          <span data-i18n="badge">Meta ads, scripted, filmed<br>&amp; edited by me</span>
+        </div>
+      </div>
+    </div>
+    <div class="phone-stage rv">
+      <span class="dot d1"></span><span class="dot d2"></span>
+      <div class="phone">
+        <video id="heroVid" src="videos/jarib-winner.mp4" poster="videos/jarib-winner.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <button class="sound" id="heroSound" data-i18n="sound_on">🔊 Sound on</button>
+      </div>
+      <div class="float f1"><b>14x</b><span data-i18n="f1">return</span></div>
+      <div class="float f2"><b>$1.43</b><span data-i18n="f2">per lead</span></div>
+      <div class="float f3"><b>6.9x</b><span data-i18n="f3">ROAS best ad</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<!-- PROCESS -->
+<section class="sec lavsec" id="process">
+  <div class="wrap">
+    <h2 class="h2 up rv" data-i18n="proc_h">The creative system</h2>
+    <p class="sub rv" data-i18n="proc_sub">Meta now picks who sees your ad based on the video itself. So a video built for one buyer finds that buyer.</p>
+    <div class="process">
+      <div class="step rv"><div class="step-top"><span class="num">1</span><h3 data-i18n="s1h">Understand the business</h3></div><p data-i18n="s1p">Positioning and messaging first. What makes you the only choice?</p></div>
+      <div class="step rv"><div class="step-top"><span class="num">2</span><h3 data-i18n="s2h">Research the buyer</h3></div><p data-i18n="s2p">Income, emotions, problems, objections, and what they will pay to fix.</p></div>
+      <div class="step rv"><div class="step-top"><span class="num">3</span><h3 data-i18n="s3h">Script from research</h3></div><p data-i18n="s3p">Every line hits a real pain point in the customer's own words.</p></div>
+      <div class="step rv"><span class="tag" data-i18n="tag_me">Done by me</span><div class="step-top"><span class="num">4</span><h3 data-i18n="s4h">Film &amp; edit</h3></div><p data-i18n="s4p">Scroll-stopping hooks, fast cuts, captions and a premium look.</p></div>
+      <div class="step rv"><div class="step-top"><span class="num">5</span><h3 data-i18n="s5h">Launch on Meta</h3></div><p data-i18n="s5p">The creative does the targeting. The right people see it.</p></div>
+      <div class="step rv"><span class="tag" data-i18n="tag_scale">Where profit comes from</span><div class="step-top"><span class="num">6</span><h3 data-i18n="s6h">Test &amp; scale</h3></div><p data-i18n="s6p">Several angles, several pains. Double down on the winner and make more versions of it.</p></div>
+    </div>
+    <div class="engine rv"><span data-i18n="engine">Ads that sell</span><small data-i18n="engine_s">research → creative → results</small></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec dark" id="services">
+  <div class="wrap">
+    <h2 class="h2 rv" data-i18n="svc_h">Creative that drives real sales</h2>
+    <p class="sub rv" data-i18n="svc_sub">One person from idea to results. No hand-offs, nothing lost in translation.</p>
+    <div class="cards">
+      <div class="card c-lime rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c1h">Research-driven scripts</h3></div><p data-i18n="c1p">Hooks and scripts built from real customer pains and objections, not guesses.</p></div>
+      <div class="card c-blue rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c2h">Filmed &amp; edited in-house</h3></div><p data-i18n="c2p">I shoot, act, and edit. UGC style, native to Reels and TikTok, made to stop the scroll.</p></div>
+      <div class="card c-orange rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c3h">Meta ads management</h3></div><p data-i18n="c3p">Campaign setup, angle testing, budget moves and scaling the winners.</p></div>
+      <div class="card c-lav rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c4h">Websites that convert</h3></div><p data-i18n="c4p">Premium, easy-to-use sites so the traffic your ads bring actually buys.</p></div>
+    </div>
+    <div class="extras rv">
+      <span class="chip" data-i18n="x1">SEO</span><span class="chip" data-i18n="x2">Content strategy</span><span class="chip" data-i18n="x3">Content calendars</span><span class="chip" data-i18n="x4">AI training (Claude &amp; AI agents)</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="results" aria-label="Results">
+  <div class="stat rv"><div class="big" data-count="10468" data-suffix=" KD">0</div><div class="lbl" data-i18n="st1">Revenue driven</div><div class="src" data-i18n="st1s">Jarib Academy + Doki Doki</div></div>
+  <div class="stat rv"><div class="big" data-count="14" data-suffix="x">0</div><div class="lbl" data-i18n="st2">Return on ad spend</div><div class="src" data-i18n="st2s">Jarib Academy, 207 KD → ~3,000 KD</div></div>
+  <div class="stat rv"><div class="big" data-count="1.43" data-prefix="$" data-dec="2">0</div><div class="lbl" data-i18n="st3">Cost per lead</div><div class="src" data-i18n="st3s">Best Jarib ad, 149 messages</div></div>
+  <div class="stat rv"><div class="big" data-count="310">0</div><div class="lbl" data-i18n="st4">Orders shipped</div><div class="src" data-i18n="st4s">Doki Doki, built from zero</div></div>
+</section>
+
+<!-- AD WALL -->
+<section class="sec dark" id="work">
+  <div class="wrap">
+    <h2 class="h2 rv" data-i18n="work_h">Ads I made</h2>
+    <p class="sub rv" data-i18n="work_sub">Real ads, real results. Tap to watch with sound.</p>
+    <div class="filters rv">
+      <button class="filt on" data-f="all" data-i18n="f_all">All</button>
+      <button class="filt" data-f="jarib" data-i18n="f_jarib">Jarib Academy</button>
+      <button class="filt" data-f="doki" data-i18n="f_doki">Doki Doki</button>
+    </div>
+  </div>
+  <div class="wall-wrap">
+    <button class="navbtn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" stroke="#242423" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></button>
+    <div class="wall" id="wall"></div>
+    <button class="navbtn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#242423" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></button>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="sec dark" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="h2 rv" data-i18n="cs_h">Case studies</h2>
+    <p class="sub rv" data-i18n="cs_sub">How the system turned small budgets into real revenue.</p>
+    <div class="cases">
+      <article class="case rv">
+        <div class="case-top">
+          <img src="videos/jarib-winner.jpg" alt="Jarib Academy winning ad">
+          <div>
+            <span class="kick" data-i18n="cs1k">14x return</span>
+            <h3 data-i18n="cs1h">Jarib Academy: filling a skate bootcamp from Instagram</h3>
+            <p class="who" data-i18n="cs1w">Freelance · Kuwait · Jun–Aug 2026</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="kpis">
+            <div class="kpi"><b>304</b><span data-i18n="k_msgs">parent inquiries</span></div>
+            <div class="kpi"><b>~40</b><span data-i18n="k_students">students enrolled</span></div>
+            <div class="kpi"><b>$1.43</b><span data-i18n="k_cpl">cost per lead (best ad)</span></div>
+          </div>
+          <p data-i18n="cs1p">Parents' biggest fear is safety. I scripted, filmed and edited 5 ads that hit it head-on. The winner opens with a real student giving the academy 5 stars, then answers the objections: safety gear, pro coaches, "our eyes are always on your kids." It positions Jarib as the only camp worth trying. 2 of the 5 ads won, and we scaled them.</p>
+          <p class="quote" data-i18n="cs1q">207 KD in ad spend → about 3,000 KD in enrollments. About 1 in 8 inquiries became a paying student.</p>
+        </div>
+      </article>
+      <article class="case rv">
+        <div class="case-top">
+          <img src="videos/doki-cleaver.jpg" alt="Doki Doki ad">
+          <div>
+            <span class="kick" data-i18n="cs2k">7,468 KD in sales</span>
+            <h3 data-i18n="cs2h">Doki Doki: building a blind-box brand from zero</h3>
+            <p class="who" data-i18n="cs2w">My own brand · Kuwait · 2025–2026</p>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="kpis">
+            <div class="kpi"><b>310</b><span data-i18n="k_orders">orders</span></div>
+            <div class="kpi"><b>6.9x</b><span data-i18n="k_roas">ROAS, best ad</span></div>
+            <div class="kpi"><b>14%</b><span data-i18n="k_repeat">repeat customers</span></div>
+          </div>
+          <p data-i18n="cs2p">A tiny niche: young women collecting Pop Mart-style blind boxes. Their biggest pain is getting duplicates and wasting money on luck. I hit that one pain from 4 angles, kept every ad profitable, and scaled what worked.</p>
+          <div class="angles">
+            <div><i data-i18n="a1i">Angle 1 · Returns</i><span data-i18n="a1">"Can I return my duplicates?"</span></div>
+            <div><i data-i18n="a2i">Angle 2 · How-to</i><span data-i18n="a2">"Don't buy another blind box until you know this"</span></div>
+            <div><i data-i18n="a3i">Angle 3 · Gifting</i><span data-i18n="a3">"The awkward moment your gift is a dud"</span></div>
+            <div><i data-i18n="a4i">Angle 4 · Money</i><span data-i18n="a4">"She went broke on duplicates"</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap about">
+    <div class="photo rv" data-i18n="photo">Photo coming soon</div>
+    <div class="rv">
+      <p class="eyebrow" data-i18n-html="about_k">About <b>Jameel</b></p>
+      <h2 data-i18n="about_h">Most businesses don't understand the algorithm. I do.</h2>
+      <p data-i18n="about_p1">I'm a performance media strategist in Kuwait. I build ads the way a salesperson thinks: find the buyer, find what hurts, then say it better than anyone else.</p>
+      <p data-i18n="about_p2">I also handle business development, so I care about sales, not views. I proved the system on my own store first, then for clients.</p>
+      <div style="margin-top:26px"><a class="btn btn-purple wa-link" href="#"><span data-i18n="cta_whatsapp">Message me on WhatsApp</span> <span class="arrow">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec purple" id="faq">
+  <div class="wrap">
+    <h2 class="h2 rv" data-i18n="faq_h">Frequently asked questions</h2>
+    <div class="faq">
+      <details class="rv"><summary data-i18n="q1">What do you do exactly?</summary><p data-i18n="a1p">Research, scripts, filming, editing and Meta ads, all in one. You get ads built for your buyer and the campaign that runs them.</p></details>
+      <details class="rv"><summary data-i18n="q2">Do you film the videos yourself?</summary><p data-i18n="a2p">Yes. I film and edit, and I can appear on camera. I can also work with your team or with creators.</p></details>
+      <details class="rv"><summary data-i18n="q3">Do you work in Arabic and English?</summary><p data-i18n="a3p">Yes. Most of my ads are in Kuwaiti Arabic, made for the local market. English works too.</p></details>
+      <details class="rv"><summary data-i18n="q4">How many ads do you make per round?</summary><p data-i18n="a4p">Usually 4–5 angles, so we can test and find a winner fast. Then I make more versions of the winner to scale.</p></details>
+      <details class="rv"><summary data-i18n="q5">Can you build my website too?</summary><p data-i18n="a5p">Yes. Good ads need a page that converts. I build premium, easy-to-use sites, plus SEO.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <span class="spark" style="top:22%;inset-inline-start:16%">✦</span><span class="spark" style="bottom:26%;inset-inline-end:18%">✦</span>
+  <div class="wrap rv">
+    <h2 data-i18n-html="final_h">Lower your cost per sale<br><u>with ads that speak to your buyer</u></h2>
+    <p data-i18n="final_p">Let's talk about your business and your customer.</p>
+    <a class="btn btn-dark wa-link" href="#"><span data-i18n="cta_lets">Let's do this</span> <span class="arrow">→</span></a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><a href="#top" class="logo"><span class="logo-mark">JH</span><span data-i18n="name">Jameel Hilal</span></a><p class="tagline" data-i18n="foot_t">Performance Media Strategist. Research-driven video ads that sell.</p></div>
+      <div><h5 data-i18n="foot_s">Services</h5><ul><li data-i18n="c1h">Research-driven scripts</li><li data-i18n="c2h">Filmed &amp; edited in-house</li><li data-i18n="c3h">Meta ads management</li><li data-i18n="c4h">Websites that convert</li></ul></div>
+      <div><h5 data-i18n="foot_c">Contact</h5><ul><li><a class="wa-link" href="#">WhatsApp: <span dir="ltr">+965 6994 5114</span></a></li><li data-i18n="foot_loc">Kuwait · Working with clients worldwide</li></ul></div>
+    </div>
+    <p class="copy">© <span id="yr"></span> Jameel Hilal</p>
+  </div>
+</footer>
+
+<a class="wa wa-link" href="#" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.2.6 4.4 1.7 6.3L3.2 29l7.3-1.9c1.8 1 3.8 1.5 5.9 1.5 7 0 12.7-5.7 12.7-12.7S23 3 16 3Zm0 23.3c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.3 1.1 1.2-4.2-.3-.4a10.5 10.5 0 0 1-1.6-5.5C5.2 9.8 10 5.1 16 5.1s10.7 4.7 10.7 10.6S21.9 26.3 16 26.3Zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2 2.9 1.1 3.5.9 4.1.8.6-.1 1.9-.8 2.2-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.4Z"/></svg></a>
+
+<script>
+const WA_NUMBER = "96569945114";
+const ADS = [
+  {id:"jarib-winner", brand:"jarib", win:true},
+  {id:"jarib-coach", brand:"jarib"},
+  {id:"doki-cleaver", brand:"doki", win:true},
+  {id:"doki-3steps", brand:"doki"},
+  {id:"doki-gift", brand:"doki"},
+  {id:"doki-broke", brand:"doki"}
+];
+const I18N = {
+ en:{
+  name:"Jameel Hilal", nav_process:"Process", nav_work:"My ads", nav_results:"Results", nav_faq:"FAQ",
+  cta_call:"Book a call", cta_short:"Talk", cta_work:"Work with me", cta_whatsapp:"Message me on WhatsApp", cta_lets:"Let's do this",
+  eyebrow:"Performance Media Strategist · <b>Kuwait</b>",
+  h1:'Video ads that speak to <span class="hl">your buyer</span> and sell',
+  lead:"I research your ideal customer, write the script, film it, edit it, and run it on Meta. Then I test angles and scale the winner.",
+  badge:"Meta ads, scripted, filmed<br>&amp; edited by me", sound_on:"🔊 Sound on", sound_off:"🔇 Mute",
+  f1:"return", f2:"per lead", f3:"ROAS best ad",
+  marquee:["Research","Script","Film","Edit","Launch","Test","Scale"],
+  proc_h:"The creative system", proc_sub:"Meta now picks who sees your ad based on the video itself. So a video built for one buyer finds that buyer.",
+  s1h:"Understand the business", s1p:"Positioning and messaging first. What makes you the only choice?",
+  s2h:"Research the buyer", s2p:"Income, emotions, problems, objections, and what they will pay to fix.",
+  s3h:"Script from research", s3p:"Every line hits a real pain point in the customer's own words.",
+  s4h:"Film & edit", s4p:"Scroll-stopping hooks, fast cuts, captions and a premium look.",
+  s5h:"Launch on Meta", s5p:"The creative does the targeting. The right people see it.",
+  s6h:"Test & scale", s6p:"Several angles, several pains. Double down on the winner and make more versions of it.",
+  tag_me:"Done by me", tag_scale:"Where profit comes from", engine:"Ads that sell", engine_s:"research → creative → results",
+  svc_h:"Creative that drives real sales", svc_sub:"One person from idea to results. No hand-offs, nothing lost in translation.",
+  c1h:"Research-driven scripts", c1p:"Hooks and scripts built from real customer pains and objections, not guesses.",
+  c2h:"Filmed & edited in-house", c2p:"I shoot, act, and edit. UGC style, native to Reels and TikTok, made to stop the scroll.",
+  c3h:"Meta ads management", c3p:"Campaign setup, angle testing, budget moves and scaling the winners.",
+  c4h:"Websites that convert", c4p:"Premium, easy-to-use sites so the traffic your ads bring actually buys.",
+  x1:"SEO", x2:"Content strategy", x3:"Content calendars", x4:"AI training (Claude & AI agents)",
+  st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → ~3,000 KD",
+  st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
+  work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
+  win:"Winner", ad:{
+   "jarib-winner":["Jarib Academy","The 5-star kid","Winner: $1.43 per lead. Social proof + safety objections handled."],
+   "jarib-coach":["Jarib Academy","The coach's secret","Me on camera, speaking to parents about their kid's fear."],
+   "doki-cleaver":["Doki Doki","The cleaver hook","6.9x ROAS. A pattern interrupt that stops the scroll."],
+   "doki-3steps":["Doki Doki","Don't buy until you know this","3-step how-to angle on the duplicates pain."],
+   "doki-gift":["Doki Doki","The dud gift","Gifting angle: a guaranteed gift, every time."],
+   "doki-broke":["Doki Doki","Broke on duplicates","Money angle: the system is built so shops profit."]},
+  cs_h:"Case studies", cs_sub:"How the system turned small budgets into real revenue.",
+  cs1k:"14x return", cs1h:"Jarib Academy: filling a skate bootcamp from Instagram", cs1w:"Freelance · Kuwait · Jun–Aug 2026",
+  k_msgs:"parent inquiries", k_students:"students enrolled", k_cpl:"cost per lead (best ad)",
+  cs1p:"Parents' biggest fear is safety. I scripted, filmed and edited 5 ads that hit it head-on. The winner opens with a real student giving the academy 5 stars, then answers the objections: safety gear, pro coaches, \"our eyes are always on your kids.\" It positions Jarib as the only camp worth trying. 2 of the 5 ads won, and we scaled them.",
+  cs1q:"207 KD in ad spend → about 3,000 KD in enrollments. About 1 in 8 inquiries became a paying student.",
+  cs2k:"7,468 KD in sales", cs2h:"Doki Doki: building a blind-box brand from zero", cs2w:"My own brand · Kuwait · 2025–2026",
+  k_orders:"orders", k_roas:"ROAS, best ad", k_repeat:"repeat customers",
+  cs2p:"A tiny niche: young women collecting Pop Mart-style blind boxes. Their biggest pain is getting duplicates and wasting money on luck. I hit that one pain from 4 angles, kept every ad profitable, and scaled what worked.",
+  a1i:"Angle 1 · Returns", a1:"\"Can I return my duplicates?\"", a2i:"Angle 2 · How-to", a2:"\"Don't buy another blind box until you know this\"",
+  a3i:"Angle 3 · Gifting", a3:"\"The awkward moment your gift is a dud\"", a4i:"Angle 4 · Money", a4:"\"She went broke on duplicates\"",
+  photo:"Photo coming soon", about_k:"About <b>Jameel</b>", about_h:"Most businesses don't understand the algorithm. I do.",
+  about_p1:"I'm a performance media strategist in Kuwait. I build ads the way a salesperson thinks: find the buyer, find what hurts, then say it better than anyone else.",
+  about_p2:"I also handle business development, so I care about sales, not views. I proved the system on my own store first, then for clients.",
+  faq_h:"Frequently asked questions",
+  q1:"What do you do exactly?", a1p:"Research, scripts, filming, editing and Meta ads, all in one. You get ads built for your buyer and the campaign that runs them.",
+  q2:"Do you film the videos yourself?", a2p:"Yes. I film and edit, and I can appear on camera. I can also work with your team or with creators.",
+  q3:"Do you work in Arabic and English?", a3p:"Yes. Most of my ads are in Kuwaiti Arabic, made for the local market. English works too.",
+  q4:"How many ads do you make per round?", a4p:"Usually 4–5 angles, so we can test and find a winner fast. Then I make more versions of the winner to scale.",
+  q5:"Can you build my website too?", a5p:"Yes. Good ads need a page that converts. I build premium, easy-to-use sites, plus SEO.",
+  final_h:"Lower your cost per sale<br><u>with ads that speak to your buyer</u>", final_p:"Let's talk about your business and your customer.",
+  foot_t:"Performance Media Strategist. Research-driven video ads that sell.", foot_s:"Services", foot_c:"Contact", foot_loc:"Kuwait · Working with clients worldwide",
+  wa_msg:"Hi Jameel, I saw your portfolio and want to talk about ads for my business.", lang_btn:"العربية"
+ },
+ ar:{
+  name:"جميل هلال", nav_process:"طريقة العمل", nav_work:"إعلاناتي", nav_results:"النتائج", nav_faq:"الأسئلة",
+  cta_call:"احجز مكالمة", cta_short:"تواصل", cta_work:"اشتغل معاي", cta_whatsapp:"راسلني على واتساب", cta_lets:"يلا نبدأ",
+  eyebrow:"خبير استراتيجيات الإعلانات · <b>الكويت</b>",
+  h1:'إعلانات فيديو تكلّم <span class="hl">عميلك</span> وتبيع',
+  lead:"أدرس عميلك المثالي، أكتب السكريبت، أصوّر، أمنتج، وأطلق الإعلان على ميتا. بعدها أجرّب زوايا مختلفة وأكبّر الإعلان الرابح.",
+  badge:"إعلانات ميتا، كتابة وتصوير<br>ومونتاج بنفسي", sound_on:"🔊 شغّل الصوت", sound_off:"🔇 كتم",
+  f1:"عائد", f2:"لكل عميل محتمل", f3:"عائد أفضل إعلان",
+  marquee:["بحث","سكريبت","تصوير","مونتاج","إطلاق","تجربة","توسّع"],
+  proc_h:"نظام صناعة الإعلان", proc_sub:"ميتا اليوم تختار مين يشوف إعلانك من الفيديو نفسه. فالفيديو المصنوع لعميل معيّن يوصل لهذا العميل.",
+  s1h:"فهم البزنس", s1p:"أبدأ بالتموضع والرسالة. شنو اللي يخليك الخيار الوحيد؟",
+  s2h:"دراسة العميل", s2p:"دخله، مشاعره، مشاكله، اعتراضاته، وشنو مستعد يدفع عشان يحلها.",
+  s3h:"سكريبت من البحث", s3p:"كل جملة تضرب على ألم حقيقي بكلام العميل نفسه.",
+  s4h:"تصوير ومونتاج", s4p:"هوكات توقف السكرول، قص سريع، ترجمة على الشاشة، وشكل فخم.",
+  s5h:"الإطلاق على ميتا", s5p:"الإعلان نفسه يسوي الاستهداف. والناس الصح تشوفه.",
+  s6h:"تجربة وتوسّع", s6p:"زوايا كثيرة وآلام مختلفة. أركّز على الرابح وأسوي منه نسخ أكثر.",
+  tag_me:"أسويها بنفسي", tag_scale:"هنا يجي الربح", engine:"إعلانات تبيع", engine_s:"بحث ← إعلان ← نتائج",
+  svc_h:"محتوى إعلاني يجيب مبيعات حقيقية", svc_sub:"شخص واحد من الفكرة إلى النتيجة. بدون تسليم بين فرق، وبدون ضياع للفكرة.",
+  c1h:"سكريبتات مبنية على بحث", c1p:"هوكات وسكريبتات من آلام واعتراضات العملاء الحقيقية، مو تخمين.",
+  c2h:"تصوير ومونتاج بنفسي", c2p:"أصوّر وأمثّل وأمنتج. ستايل UGC يناسب الريلز وتيك توك، ويوقف السكرول.",
+  c3h:"إدارة إعلانات ميتا", c3p:"إعداد الحملات، تجربة الزوايا، توزيع الميزانية، وتكبير الإعلانات الرابحة.",
+  c4h:"مواقع تحوّل الزوار لعملاء", c4p:"مواقع فخمة وسهلة، عشان الزيارات اللي يجيبها الإعلان تشتري فعلاً.",
+  x1:"تحسين محركات البحث SEO", x2:"استراتيجية المحتوى", x3:"جداول المحتوى", x4:"تدريب الذكاء الاصطناعي (Claude والوكلاء الذكيين)",
+  st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← ~3,000 د.ك",
+  st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
+  work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
+  win:"الرابح", ad:{
+   "jarib-winner":["أكاديمية جرّب","طفل الخمس نجوم","الرابح: 1.43$ لكل عميل محتمل. إثبات اجتماعي ورد على مخاوف الأمان."],
+   "jarib-coach":["أكاديمية جرّب","سر المدرب","أنا قدام الكاميرا، أكلّم الأهالي عن خوف عيالهم."],
+   "doki-cleaver":["دوكي دوكي","هوك الساطور","عائد 6.9x. مشهد غير متوقع يوقف السكرول."],
+   "doki-3steps":["دوكي دوكي","لا تشترين قبل ما تعرفين هذا","زاوية ٣ خطوات عن مشكلة التكرار."],
+   "doki-gift":["دوكي دوكي","الهدية الخايبة","زاوية الهدايا: هدية مضمونة كل مرة."],
+   "doki-broke":["دوكي دوكي","أفلست من التكرار","زاوية الفلوس: النظام مصمم عشان المحلات تربح."]},
+  cs_h:"دراسات حالة", cs_sub:"كيف حوّل النظام ميزانيات صغيرة لمبيعات حقيقية.",
+  cs1k:"عائد 14x", cs1h:"أكاديمية جرّب: تعبئة معسكر سكيت من إنستقرام", cs1w:"عمل حر · الكويت · يونيو–أغسطس 2026",
+  k_msgs:"استفسار من الأهالي", k_students:"طالب سجّل", k_cpl:"تكلفة العميل المحتمل (أفضل إعلان)",
+  cs1p:"أكبر خوف عند الأهالي هو الأمان. كتبت وصوّرت ومنتجت ٥ إعلانات تواجه هالخوف مباشرة. الإعلان الرابح يبدأ بطالب حقيقي يعطي الأكاديمية ٥ نجوم، وبعدها يرد على الاعتراضات: معدات السلامة، مدربين محترفين، و\"عيوننا دايماً على عيالكم\". وخلّى جرّب المكان الوحيد اللي لازم تجربونه. ٢ من ٥ إعلانات ربحت، وكبّرناها.",
+  cs1q:"207 د.ك إنفاق إعلاني ← تقريباً 3,000 د.ك تسجيلات. تقريباً ١ من كل ٨ استفسارات صار طالب يدفع.",
+  cs2k:"7,468 د.ك مبيعات", cs2h:"دوكي دوكي: بناء براند بلايند بوكس من الصفر", cs2w:"مشروعي الخاص · الكويت · 2025–2026",
+  k_orders:"طلب", k_roas:"عائد أفضل إعلان", k_repeat:"عملاء رجعوا يشترون",
+  cs2p:"جمهور صغير جداً: بنات يجمعون البلايند بوكس مثل Pop Mart. أكبر ألم عندهم هو التكرار وخسارة الفلوس على الحظ. ضربت على هالألم من ٤ زوايا، كل الإعلانات كانت رابحة، وكبّرت اللي نجح.",
+  a1i:"زاوية ١ · الإرجاع", a1:"\"أقدر أرجّع الألعاب المكررة؟\"", a2i:"زاوية ٢ · شرح", a2:"\"لا تشترين بلايند بوكس قبل ما تعرفين هذا\"",
+  a3i:"زاوية ٣ · الهدايا", a3:"\"الموقف المحرج لما هديتك تطلع خايبة\"", a4i:"زاوية ٤ · الفلوس", a4:"\"أفلست من التكرار\"",
+  photo:"الصورة قريباً", about_k:"عن <b>جميل</b>", about_h:"أغلب البزنسات ما تفهم الخوارزمية. أنا أفهمها.",
+  about_p1:"أنا خبير استراتيجيات إعلانات في الكويت. أبني الإعلان بعقلية البيّاع: ألقى المشتري، ألقى وين يوجعه، وأقولها أحسن من أي أحد.",
+  about_p2:"أشتغل بعد في تطوير الأعمال، فيهمني البيع مو المشاهدات. جرّبت النظام على متجري أول، وبعدين مع العملاء.",
+  faq_h:"الأسئلة الشائعة",
+  q1:"شنو تسوي بالضبط؟", a1p:"بحث، سكريبت، تصوير، مونتاج، وإعلانات ميتا، كلها بمكان واحد. تاخذ إعلانات مصنوعة لعميلك والحملة اللي تشغّلها.",
+  q2:"تصوّر الفيديوهات بنفسك؟", a2p:"إي نعم. أصوّر وأمنتج، وأقدر أطلع قدام الكاميرا. وأقدر أشتغل مع فريقك أو مع صنّاع محتوى.",
+  q3:"تشتغل بالعربي والإنجليزي؟", a3p:"إي. أغلب إعلاناتي باللهجة الكويتية للسوق المحلي، والإنجليزي بعد.",
+  q4:"كم إعلان تسوي بكل جولة؟", a4p:"عادةً ٤–٥ زوايا عشان نجرّب ونلقى الرابح بسرعة. بعدها أسوي نسخ أكثر من الرابح عشان نكبّر.",
+  q5:"تقدر تسوي لي موقع بعد؟", a5p:"إي. الإعلان الزين يحتاج صفحة تبيع. أسوي مواقع فخمة وسهلة، مع SEO.",
+  final_h:"قلّل تكلفة كل عملية بيع<br><u>بإعلانات تكلّم عميلك</u>", final_p:"خلنا نتكلم عن البزنس مالك وعن عميلك.",
+  foot_t:"خبير استراتيجيات الإعلانات. إعلانات فيديو مبنية على بحث وتبيع.", foot_s:"الخدمات", foot_c:"تواصل", foot_loc:"الكويت · أشتغل مع عملاء من كل مكان",
+  wa_msg:"هلا جميل، شفت البورتفوليو مالك وأبي أتكلم معاك عن إعلانات لمشروعي.", lang_btn:"English"
+ }
+};
+let lang = "en";
+try{ const s = localStorage.getItem("jh-lang"); if(s==="ar"||s==="en") lang = s; }catch(e){}
+if(new URLSearchParams(location.search).get("lang")==="ar") lang="ar";
+
+function renderWall(){
+  const t = I18N[lang], wall = document.getElementById("wall");
+  wall.innerHTML = ADS.map(a=>{
+    const [brand,title,desc] = t.ad[a.id];
+    return `<div class="ad" data-b="${a.brand}">
+      <div class="phone" style="position:relative">
+        <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
+        <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+      </div>
+      <div class="ad-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p></div>
+    </div>`;}).join("");
+  wall.querySelectorAll(".ad video").forEach(v=>{
+    v.addEventListener("click",()=>{
+      const card=v.closest(".ad");
+      if(v.paused){
+        document.querySelectorAll(".ad video").forEach(o=>{if(o!==v){o.pause();o.closest(".ad").classList.remove("playing");}});
+        const hv=document.getElementById("heroVid"); hv.muted=true; setSoundLabel();
+        v.muted=false; v.play(); card.classList.add("playing");
+      } else { v.pause(); card.classList.remove("playing"); }
+    });
+  });
+  applyFilter(document.querySelector(".filt.on").dataset.f);
+}
+function applyFilter(f){
+  document.querySelectorAll(".ad").forEach(a=>a.classList.toggle("hide", f!=="all" && a.dataset.b!==f));
+}
+function setSoundLabel(){
+  const hv=document.getElementById("heroVid");
+  document.getElementById("heroSound").textContent = hv.muted ? I18N[lang].sound_on : I18N[lang].sound_off;
+}
+function applyLang(){
+  const t = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==="ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.dataset.i18n; if(t[k]!==undefined) el.textContent=t[k]; });
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{ const k=el.dataset.i18nHtml; if(t[k]!==undefined) el.innerHTML=t[k]; });
+  document.getElementById("lang").textContent = t.lang_btn;
+  const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t.wa_msg)}`;
+  document.querySelectorAll(".wa-link").forEach(a=>{a.href=href;a.target="_blank";a.rel="noopener";});
+  const words = t.marquee.concat(t.marquee);
+  document.getElementById("track").innerHTML = words.concat(words).map(w=>`<span>${w}</span>`).join("");
+  document.querySelectorAll(".stat .big").forEach(el=>{ if(el.dataset.done) el.textContent = fmt(el, +el.dataset.count); });
+  setSoundLabel(); renderWall();
+}
+function fmt(el,n){
+  const d=+(el.dataset.dec||0), p=el.dataset.prefix||"";
+  let s=el.dataset.suffix||""; if(lang==="ar" && s===" KD") s=" د.ك";
+  return p + n.toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}) + s;
+}
+document.getElementById("lang").addEventListener("click",()=>{
+  lang = lang==="en" ? "ar" : "en";
+  try{ localStorage.setItem("jh-lang", lang); }catch(e){}
+  applyLang();
+});
+document.getElementById("heroSound").addEventListener("click",()=>{
+  const hv=document.getElementById("heroVid"); hv.muted=!hv.muted; if(!hv.muted) hv.play(); setSoundLabel();
+});
+document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
+}));
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>{
+  const w=document.getElementById("wall"); const dir = b.classList.contains("next")?1:-1;
+  w.scrollBy({left: dir*(document.dir==="rtl"?-1:1)*270, behavior:"smooth"});
+}));
+// reveal + count-up
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  e.target.classList.add("in"); io.unobserve(e.target);
+  const big = e.target.querySelector(".big[data-count]");
+  if(big && !big.dataset.done){
+    const end=+big.dataset.count, t0=performance.now(), dur=1400;
+    const tick=now=>{ const k=Math.min(1,(now-t0)/dur), v=end*(1-Math.pow(1-k,3));
+      big.textContent=fmt(big, k<1 ? (big.dataset.dec? v : Math.round(v)) : end);
+      if(k<1) requestAnimationFrame(tick); else big.dataset.done=1; };
+    requestAnimationFrame(tick);
+  }
+}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+document.getElementById("yr").textContent = new Date().getFullYear();
+applyLang();
+</script>
+</body>
+</html>
