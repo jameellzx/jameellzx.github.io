@@ -175,6 +175,30 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 }
 @media(min-width:1500px){.wall{grid-template-columns:repeat(6,minmax(0,210px));gap:28px}}
 
+/* brands band */
+.brands{background:var(--cream);border-top:1px solid rgba(36,36,35,.08);padding:26px 0}
+.brands-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px}
+.brands-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:100%;text-align:center}
+@media(min-width:760px){.brands-k{width:auto}}
+.brand{display:flex;align-items:center;gap:12px;background:var(--white);border-radius:var(--pill);padding:8px 20px 8px 8px;box-shadow:0 7px 23px rgba(53,35,183,.07);transition:transform .2s}
+html[dir=rtl] .brand{padding:8px 8px 8px 20px}
+.brand:hover{transform:translateY(-3px)}
+.brand-logo{width:52px;height:52px;border-radius:50%;background:var(--lav);display:grid;place-items:center;overflow:hidden;flex:none}
+.brand-logo img{max-width:78%;max-height:78%;object-fit:contain}
+.brand b{display:block;font-size:15px}
+.brand small{font-size:12px;color:var(--muted)}
+
+/* case gallery + links */
+.gal-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--lime);margin-bottom:10px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gimg{border:0;padding:0;border-radius:10px;overflow:hidden;cursor:zoom-in;background:none}
+.gimg img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .3s}
+.gimg:hover img{transform:scale(1.05)}
+.case-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.case-links a{border:1.5px solid rgba(221,212,246,.4);border-radius:var(--pill);padding:8px 16px;font-size:13px;font-weight:600;color:var(--lav)}
+.case-links a:hover{background:var(--lav);color:var(--ink)}
+dialog.lb.photo-mode img{width:auto;max-width:92vw;max-height:86vh}
+
 /* proof */
 .proof{margin-top:44px;display:grid;gap:20px}
 @media(min-width:960px){.proof{grid-template-columns:1fr 1fr}.proof .wide{grid-column:1/-1}}
@@ -313,6 +337,21 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
   </div>
 </section>
 
+<!-- BRANDS -->
+<section class="brands" aria-label="Brands">
+  <div class="wrap brands-in">
+    <p class="brands-k" data-i18n="brands_k">Brands I've grown</p>
+    <a class="brand" href="https://www.instagram.com/jaribacademy/" target="_blank" rel="noopener">
+      <span class="brand-logo"><img src="logos/jarib.png" alt="Jarib Academy logo"></span>
+      <span><b data-i18n="f_jarib">Jarib Academy</b><small>@jaribacademy</small></span>
+    </a>
+    <a class="brand" href="https://www.instagram.com/dokidoki.toys/" target="_blank" rel="noopener">
+      <span class="brand-logo"><img src="logos/doki-doki.png" alt="Doki Doki logo"></span>
+      <span><b data-i18n="f_doki">Doki Doki</b><small>@dokidoki.toys</small></span>
+    </a>
+  </div>
+</section>
+
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 
@@ -352,8 +391,8 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 
 <!-- STATS -->
 <section class="stats" id="results" aria-label="Results">
-  <div class="stat rv"><div class="big" data-count="10468" data-suffix=" KD">0</div><div class="lbl" data-i18n="st1">Revenue driven</div><div class="src" data-i18n="st1s">Jarib Academy + Doki Doki</div></div>
-  <div class="stat rv"><div class="big" data-count="14" data-suffix="x">0</div><div class="lbl" data-i18n="st2">Return on ad spend</div><div class="src" data-i18n="st2s">Jarib Academy, 207 KD → ~3,000 KD</div></div>
+  <div class="stat rv"><div class="big" data-count="10368" data-suffix=" KD">0</div><div class="lbl" data-i18n="st1">Revenue driven</div><div class="src" data-i18n="st1s">Jarib Academy + Doki Doki</div></div>
+  <div class="stat rv"><div class="big" data-count="14" data-suffix="x">0</div><div class="lbl" data-i18n="st2">Return on ad spend</div><div class="src" data-i18n="st2s">Jarib Academy, 207 KD → 2,900 KD</div></div>
   <div class="stat rv"><div class="big" data-count="1.43" data-prefix="$" data-dec="2">0</div><div class="lbl" data-i18n="st3">Cost per lead</div><div class="src" data-i18n="st3s">Best Jarib ad, 149 messages</div></div>
   <div class="stat rv"><div class="big" data-count="310">0</div><div class="lbl" data-i18n="st4">Orders shipped</div><div class="src" data-i18n="st4s">Doki Doki, built from zero</div></div>
 </section>
@@ -396,7 +435,16 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
             <div class="kpi"><b>$1.43</b><span data-i18n="k_cpl">cost per lead (best ad)</span></div>
           </div>
           <p data-i18n="cs1p">Parents' biggest fear is safety. I scripted, filmed and edited 5 ads that hit it head-on. The winner opens with a real student giving the academy 5 stars, then answers the objections: safety gear, pro coaches, "our eyes are always on your kids." It positions Jarib as the only camp worth trying. 2 of the 5 ads won, and we scaled them.</p>
-          <p class="quote" data-i18n="cs1q">207 KD in ad spend → about 3,000 KD in enrollments. About 1 in 8 inquiries became a paying student.</p>
+          <p class="quote" data-i18n="cs1q">207 KD in ad spend → 2,900 KD in enrollments. About 1 in 8 inquiries became a paying student.</p>
+          <div>
+            <p class="gal-k" data-i18n="gal_k">Real students from the campaign</p>
+            <div class="gallery">
+              <button class="gimg" data-src="photos/jarib-students-1.jpg"><img src="photos/jarib-students-1.jpg" alt="Jarib Academy students" loading="lazy"></button>
+              <button class="gimg" data-src="photos/jarib-students-2.jpg"><img src="photos/jarib-students-2.jpg" alt="Jarib Academy students with coaches" loading="lazy"></button>
+              <button class="gimg" data-src="photos/jarib-students-3.jpg"><img src="photos/jarib-students-3.jpg" alt="Jarib Academy students" loading="lazy"></button>
+            </div>
+          </div>
+          <div class="case-links"><a href="https://www.instagram.com/jaribacademy/" target="_blank" rel="noopener">Instagram ↗</a></div>
         </div>
       </article>
       <article class="case rv">
@@ -421,6 +469,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
             <div><i data-i18n="a3i">Angle 3 · Gifting</i><span data-i18n="a3">"The awkward moment your gift is a dud"</span></div>
             <div><i data-i18n="a4i">Angle 4 · Money</i><span data-i18n="a4">"She went broke on duplicates"</span></div>
           </div>
+          <div class="case-links"><a href="https://www.dokidokikw.com" target="_blank" rel="noopener"><span data-i18n="visit_site">Visit the store</span> ↗</a><a href="https://www.instagram.com/dokidoki.toys/" target="_blank" rel="noopener">Instagram ↗</a></div>
         </div>
       </article>
     </div>
@@ -542,10 +591,11 @@ const I18N = {
   c3h:"Meta ads management", c3p:"Campaign setup, angle testing, budget moves and scaling the winners.",
   c4h:"Websites that convert", c4p:"Premium, easy-to-use sites so the traffic your ads bring actually buys.",
   x1:"SEO", x2:"Content strategy", x3:"Content calendars", x4:"AI training (Claude & AI agents)",
-  st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → ~3,000 KD",
+  st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → 2,900 KD",
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
   work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
   on_ig:"Watch on Instagram ↗", zoom:"View full size ↗", swipe:"Swipe to see the full picture",
+  brands_k:"Brands I've grown", gal_k:"Real students from the campaign", visit_site:"Visit the store",
   pr_h:"Don't take my word for it", pr_sub:"Real screenshots from the ad accounts and the store. Tap any one to see it full size.",
   pr1h:"Jarib Academy · Meta Ads Manager", pr1p:"304 messaging conversations for $673. Best ad: 149 conversations at $1.43 each.",
   pr2h:"Doki Doki · Meta Ads Manager", pr2p:"Every ad profitable. Best ad returned 6.92x its spend.",
@@ -562,7 +612,7 @@ const I18N = {
   cs1k:"14x return", cs1h:"Jarib Academy: filling a skate bootcamp from Instagram", cs1w:"Freelance · Kuwait · Jun–Aug 2026",
   k_msgs:"parent inquiries", k_students:"students enrolled", k_cpl:"cost per lead (best ad)",
   cs1p:"Parents' biggest fear is safety. I scripted, filmed and edited 5 ads that hit it head-on. The winner opens with a real student giving the academy 5 stars, then answers the objections: safety gear, pro coaches, \"our eyes are always on your kids.\" It positions Jarib as the only camp worth trying. 2 of the 5 ads won, and we scaled them.",
-  cs1q:"207 KD in ad spend → about 3,000 KD in enrollments. About 1 in 8 inquiries became a paying student.",
+  cs1q:"207 KD in ad spend → 2,900 KD in enrollments. About 1 in 8 inquiries became a paying student.",
   cs2k:"7,468 KD in sales", cs2h:"Doki Doki: building a blind-box brand from zero", cs2w:"My own brand · Kuwait · 2025–2026",
   k_orders:"orders", k_roas:"ROAS, best ad", k_repeat:"repeat customers",
   cs2p:"A tiny niche: young women collecting Pop Mart-style blind boxes. Their biggest pain is getting duplicates and wasting money on luck. I hit that one pain from 4 angles, kept every ad profitable, and scaled what worked.",
@@ -604,10 +654,11 @@ const I18N = {
   c3h:"إدارة إعلانات ميتا", c3p:"إعداد الحملات، تجربة الزوايا، توزيع الميزانية، وتكبير الإعلانات الرابحة.",
   c4h:"مواقع تحوّل الزوار لعملاء", c4p:"مواقع فخمة وسهلة، عشان الزيارات اللي يجيبها الإعلان تشتري فعلاً.",
   x1:"تحسين محركات البحث SEO", x2:"استراتيجية المحتوى", x3:"جداول المحتوى", x4:"تدريب الذكاء الاصطناعي (Claude والوكلاء الذكيين)",
-  st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← ~3,000 د.ك",
+  st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← 2,900 د.ك",
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
   work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
   on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗", swipe:"اسحب عشان تشوف الصورة كاملة",
+  brands_k:"براندات كبّرتها", gal_k:"طلاب حقيقيين من الحملة", visit_site:"زور المتجر",
   pr_h:"لا تصدقني، شوف بنفسك", pr_sub:"سكرينشوتات حقيقية من حسابات الإعلانات ومن المتجر. اضغط على أي وحدة عشان تشوفها كاملة.",
   pr1h:"أكاديمية جرّب · مدير إعلانات ميتا", pr1p:"304 محادثة بـ 673$. أفضل إعلان: 149 محادثة بـ 1.43$ للوحدة.",
   pr2h:"دوكي دوكي · مدير إعلانات ميتا", pr2p:"كل الإعلانات رابحة. أفضل إعلان رجّع 6.92 ضعف تكلفته.",
@@ -624,7 +675,7 @@ const I18N = {
   cs1k:"عائد 14x", cs1h:"أكاديمية جرّب: تعبئة معسكر سكيت من إنستقرام", cs1w:"عمل حر · الكويت · يونيو–أغسطس 2026",
   k_msgs:"استفسار من الأهالي", k_students:"طالب سجّل", k_cpl:"تكلفة العميل المحتمل (أفضل إعلان)",
   cs1p:"أكبر خوف عند الأهالي هو الأمان. كتبت وصوّرت ومنتجت ٥ إعلانات تواجه هالخوف مباشرة. الإعلان الرابح يبدأ بطالب حقيقي يعطي الأكاديمية ٥ نجوم، وبعدها يرد على الاعتراضات: معدات السلامة، مدربين محترفين، و\"عيوننا دايماً على عيالكم\". وخلّى جرّب المكان الوحيد اللي لازم تجربونه. ٢ من ٥ إعلانات ربحت، وكبّرناها.",
-  cs1q:"207 د.ك إنفاق إعلاني ← تقريباً 3,000 د.ك تسجيلات. تقريباً ١ من كل ٨ استفسارات صار طالب يدفع.",
+  cs1q:"207 د.ك إنفاق إعلاني ← 2,900 د.ك تسجيلات. تقريباً ١ من كل ٨ استفسارات صار طالب يدفع.",
   cs2k:"7,468 د.ك مبيعات", cs2h:"دوكي دوكي: بناء براند بلايند بوكس من الصفر", cs2w:"مشروعي الخاص · الكويت · 2025–2026",
   k_orders:"طلب", k_roas:"عائد أفضل إعلان", k_repeat:"عملاء رجعوا يشترون",
   cs2p:"جمهور صغير جداً: بنات يجمعون البلايند بوكس مثل Pop Mart. أكبر ألم عندهم هو التكرار وخسارة الفلوس على الحظ. ضربت على هالألم من ٤ زوايا، كل الإعلانات كانت رابحة، وكبّرت اللي نجح.",
@@ -728,7 +779,8 @@ lbInner.addEventListener("scroll",()=>{
   lbEdges();
   if(lbHint.classList.contains("show") && !lbHint.classList.contains("gone")) setTimeout(()=>lbHint.classList.add("gone"),900);
 },{passive:true});
-document.querySelectorAll(".shot").forEach(b=>b.addEventListener("click",()=>lbOpen(b.dataset.src)));
+document.querySelectorAll(".shot").forEach(b=>b.addEventListener("click",()=>{ lb.classList.remove("photo-mode"); lbOpen(b.dataset.src); }));
+document.querySelectorAll(".gimg").forEach(b=>b.addEventListener("click",()=>{ lb.classList.add("photo-mode"); lbOpen(b.dataset.src); }));
 document.getElementById("lbClose").addEventListener("click",()=>lb.close());
 lb.addEventListener("click",e=>{ if(e.target===lb) lb.close(); });
 // reveal + count-up
