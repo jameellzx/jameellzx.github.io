@@ -173,7 +173,6 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
   .wall{display:grid;grid-template-columns:repeat(3,minmax(0,260px));justify-content:center;gap:40px 36px;overflow:visible;padding:10px var(--gut) 20px}
   .reel{flex:none}
 }
-@media(min-width:1500px){.wall{grid-template-columns:repeat(6,minmax(0,210px));gap:28px}}
 
 /* brands band */
 .brands{background:var(--cream);border-top:1px solid rgba(36,36,35,.08);padding:26px 0}
@@ -564,6 +563,9 @@ const WA_NUMBER = "96569945114";
 const ADS = [
   {id:"jarib-winner", brand:"jarib", win:true, ig:"DbCtTpFKKY-"},
   {id:"jarib-coach", brand:"jarib", ig:"DaAN8o5K_0M"},
+  {id:"jarib-parents", brand:"jarib", ig:"DZ7xdMuKIK0"},
+  {id:"jarib-likes", brand:"jarib", ig:"DZ-UAnyKL7n"},
+  {id:"jarib-failure", brand:"jarib", ig:"DaBRlMmq_VG"},
   {id:"doki-cleaver", brand:"doki", win:true, ig:"DT2v602DWX7"},
   {id:"doki-3steps", brand:"doki", ig:"DbGWOVuOCgR"},
   {id:"doki-gift", brand:"doki", ig:"DbGZL-YO8Mj"},
@@ -606,6 +608,9 @@ const I18N = {
   win:"Winner", ad:{
    "jarib-winner":["Jarib Academy","The 5-star kid","Winner: $1.43 per lead. Social proof + safety objections handled."],
    "jarib-coach":["Jarib Academy","The coach's secret","Me on camera, speaking to parents about their kid's fear."],
+   "jarib-parents":["Jarib Academy","Parents, listen up","Calls out parents in the first second, then sells confidence and safety."],
+   "jarib-likes":["Jarib Academy","Likes vs. real achievement","Screen dopamine vs. the feeling of landing something hard."],
+   "jarib-failure":["Jarib Academy","Learning to lose","Football teaches winning. Skating teaches handling failure."],
    "doki-cleaver":["Doki Doki","The cleaver hook","6.9x ROAS. A pattern interrupt that stops the scroll."],
    "doki-3steps":["Doki Doki","Don't buy until you know this","3-step how-to angle on the duplicates pain."],
    "doki-gift":["Doki Doki","The dud gift","Gifting angle: a guaranteed gift, every time."],
@@ -669,6 +674,9 @@ const I18N = {
   win:"الرابح", ad:{
    "jarib-winner":["أكاديمية جرّب","طفل الخمس نجوم","الرابح: 1.43$ لكل عميل محتمل. إثبات اجتماعي ورد على مخاوف الأمان."],
    "jarib-coach":["أكاديمية جرّب","سر المدرب","أنا قدام الكاميرا، أكلّم الأهالي عن خوف عيالهم."],
+   "jarib-parents":["أكاديمية جرّب","إذا عندك عيال ركّز معاي","يكلّم الأهالي من أول ثانية، وبعدها يبيع الثقة والأمان."],
+   "jarib-likes":["أكاديمية جرّب","اللايك ولا الإنجاز الحقيقي","متعة الشاشة مقابل إحساس إنك تنجز شي صعب."],
+   "jarib-failure":["أكاديمية جرّب","يتعلم يخسر","الكورة تعلّم الفوز. السكيت يعلّم كيف تتعامل مع الفشل."],
    "doki-cleaver":["دوكي دوكي","هوك الساطور","عائد 6.9x. مشهد غير متوقع يوقف السكرول."],
    "doki-3steps":["دوكي دوكي","لا تشترين قبل ما تعرفين هذا","زاوية ٣ خطوات عن مشكلة التكرار."],
    "doki-gift":["دوكي دوكي","الهدية الخايبة","زاوية الهدايا: هدية مضمونة كل مرة."],
