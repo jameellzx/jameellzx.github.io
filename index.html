@@ -166,8 +166,31 @@ html[dir=rtl] .h2.up{text-transform:none}
 .navbtn svg{width:18px}
 .prev{inset-inline-start:8px}.next{inset-inline-end:8px}
 html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
-@media(min-width:900px){.navbtn{display:grid}}
 .ad.hide{display:none}
+.ad-meta a{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--lime)}
+/* desktop: show every ad at once in a grid instead of a sideways carousel */
+@media(min-width:900px){
+  .wall{display:grid;grid-template-columns:repeat(3,minmax(0,260px));justify-content:center;gap:40px 36px;overflow:visible;padding:10px var(--gut) 20px}
+  .ad{flex:none}
+}
+@media(min-width:1500px){.wall{grid-template-columns:repeat(6,minmax(0,210px));gap:28px}}
+
+/* proof */
+.proof{margin-top:44px;display:grid;gap:20px}
+@media(min-width:960px){.proof{grid-template-columns:1fr 1fr}.proof .wide{grid-column:1/-1}}
+.shot{background:var(--white);color:var(--ink);border-radius:var(--r);padding:14px;border:0;text-align:start;cursor:zoom-in;font:inherit;display:flex;flex-direction:column;gap:12px;transition:transform .2s}
+.shot:hover{transform:translateY(-4px)}
+.shot-img{border-radius:10px;overflow:hidden;background:#f3f3f3;border:1px solid #eee}
+.shot-img img{width:100%;height:auto}
+.shot h4{font-size:16px}
+.shot p{font-size:13px;color:var(--muted)}
+.shot .zoom{font-size:12px;font-weight:700;color:var(--purple)}
+dialog.lb{border:0;padding:0;background:transparent;max-width:96vw;max-height:92vh;margin:auto}
+dialog.lb::backdrop{background:rgba(20,20,20,.88)}
+dialog.lb .inner{overflow:auto;max-height:88vh;max-width:96vw;border-radius:12px;background:#fff}
+dialog.lb img{max-width:none;width:1600px}
+@media(max-width:700px){dialog.lb img{width:1200px}}
+dialog.lb button{position:fixed;top:14px;inset-inline-end:14px;width:44px;height:44px;border-radius:50%;border:0;background:var(--lime);font-size:22px;cursor:pointer}
 
 /* case studies */
 .cases{margin-top:48px;display:grid;gap:24px}
@@ -241,6 +264,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
       <a href="#process" data-i18n="nav_process">Process</a>
       <a href="#work" data-i18n="nav_work">My ads</a>
       <a href="#results" data-i18n="nav_results">Results</a>
+      <a href="#proof" data-i18n="nav_proof">Proof</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
     </nav>
     <div class="nav-actions">
@@ -336,9 +360,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
     </div>
   </div>
   <div class="wall-wrap">
-    <button class="navbtn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" stroke="#242423" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></button>
     <div class="wall" id="wall"></div>
-    <button class="navbtn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke="#242423" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></button>
   </div>
 </section>
 
@@ -395,6 +417,35 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
   </div>
 </section>
 
+<!-- PROOF -->
+<section class="sec lavsec" id="proof">
+  <div class="wrap">
+    <h2 class="h2 up rv" data-i18n="pr_h">Don't take my word for it</h2>
+    <p class="sub rv" data-i18n="pr_sub">Real screenshots from the ad accounts and the store. Tap any one to see it full size.</p>
+    <div class="proof">
+      <button class="shot wide rv" data-src="proof/jarib-meta.webp">
+        <div class="shot-img"><img src="proof/jarib-meta.webp" alt="Jarib Academy Meta Ads Manager results" loading="lazy"></div>
+        <h4 data-i18n="pr1h">Jarib Academy · Meta Ads Manager</h4>
+        <p data-i18n="pr1p">304 messaging conversations for $673. Best ad: 149 conversations at $1.43 each.</p>
+        <span class="zoom" data-i18n="zoom">View full size ↗</span>
+      </button>
+      <button class="shot wide rv" data-src="proof/doki-meta.webp">
+        <div class="shot-img"><img src="proof/doki-meta.webp" alt="Doki Doki Meta Ads Manager results" loading="lazy"></div>
+        <h4 data-i18n="pr2h">Doki Doki · Meta Ads Manager</h4>
+        <p data-i18n="pr2p">Every ad profitable. Best ad returned 6.92x its spend.</p>
+        <span class="zoom" data-i18n="zoom">View full size ↗</span>
+      </button>
+      <button class="shot wide rv" data-src="proof/doki-shopify.webp">
+        <div class="shot-img"><img src="proof/doki-shopify.webp" alt="Doki Doki Shopify sales dashboard" loading="lazy"></div>
+        <h4 data-i18n="pr3h">Doki Doki · Shopify sales</h4>
+        <p data-i18n="pr3p">KWD 7,468 in total sales and 310 orders, Apr 2025 to Sep 2026.</p>
+        <span class="zoom" data-i18n="zoom">View full size ↗</span>
+      </button>
+    </div>
+  </div>
+</section>
+<dialog class="lb" id="lb"><button aria-label="Close" id="lbClose">×</button><div class="inner"><img id="lbImg" alt=""></div></dialog>
+
 <!-- ABOUT -->
 <section class="sec" id="about">
   <div class="wrap about">
@@ -450,12 +501,12 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 <script>
 const WA_NUMBER = "96569945114";
 const ADS = [
-  {id:"jarib-winner", brand:"jarib", win:true},
-  {id:"jarib-coach", brand:"jarib"},
-  {id:"doki-cleaver", brand:"doki", win:true},
-  {id:"doki-3steps", brand:"doki"},
-  {id:"doki-gift", brand:"doki"},
-  {id:"doki-broke", brand:"doki"}
+  {id:"jarib-winner", brand:"jarib", win:true, ig:"DbCtTpFKKY-"},
+  {id:"jarib-coach", brand:"jarib", ig:"DaAN8o5K_0M"},
+  {id:"doki-cleaver", brand:"doki", win:true, ig:"DT2v602DWX7"},
+  {id:"doki-3steps", brand:"doki", ig:"DbGWOVuOCgR"},
+  {id:"doki-gift", brand:"doki", ig:"DbGZL-YO8Mj"},
+  {id:"doki-broke", brand:"doki", ig:"DbG0lbQO1HJ"}
 ];
 const I18N = {
  en:{
@@ -484,6 +535,12 @@ const I18N = {
   st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → ~3,000 KD",
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
   work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
+  on_ig:"Watch on Instagram ↗", zoom:"View full size ↗",
+  pr_h:"Don't take my word for it", pr_sub:"Real screenshots from the ad accounts and the store. Tap any one to see it full size.",
+  pr1h:"Jarib Academy · Meta Ads Manager", pr1p:"304 messaging conversations for $673. Best ad: 149 conversations at $1.43 each.",
+  pr2h:"Doki Doki · Meta Ads Manager", pr2p:"Every ad profitable. Best ad returned 6.92x its spend.",
+  pr3h:"Doki Doki · Shopify sales", pr3p:"KWD 7,468 in total sales and 310 orders, Apr 2025 to Sep 2026.",
+  nav_proof:"Proof",
   win:"Winner", ad:{
    "jarib-winner":["Jarib Academy","The 5-star kid","Winner: $1.43 per lead. Social proof + safety objections handled."],
    "jarib-coach":["Jarib Academy","The coach's secret","Me on camera, speaking to parents about their kid's fear."],
@@ -540,6 +597,12 @@ const I18N = {
   st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← ~3,000 د.ك",
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
   work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
+  on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗",
+  pr_h:"لا تصدقني، شوف بنفسك", pr_sub:"سكرينشوتات حقيقية من حسابات الإعلانات ومن المتجر. اضغط على أي وحدة عشان تشوفها كاملة.",
+  pr1h:"أكاديمية جرّب · مدير إعلانات ميتا", pr1p:"304 محادثة بـ 673$. أفضل إعلان: 149 محادثة بـ 1.43$ للوحدة.",
+  pr2h:"دوكي دوكي · مدير إعلانات ميتا", pr2p:"كل الإعلانات رابحة. أفضل إعلان رجّع 6.92 ضعف تكلفته.",
+  pr3h:"دوكي دوكي · مبيعات شوبيفاي", pr3p:"7,468 د.ك مبيعات و310 طلب، من أبريل 2025 إلى سبتمبر 2026.",
+  nav_proof:"الإثبات",
   win:"الرابح", ad:{
    "jarib-winner":["أكاديمية جرّب","طفل الخمس نجوم","الرابح: 1.43$ لكل عميل محتمل. إثبات اجتماعي ورد على مخاوف الأمان."],
    "jarib-coach":["أكاديمية جرّب","سر المدرب","أنا قدام الكاميرا، أكلّم الأهالي عن خوف عيالهم."],
@@ -584,7 +647,7 @@ function renderWall(){
         <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
         <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
       </div>
-      <div class="ad-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p></div>
+      <div class="ad-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
     </div>`;}).join("");
   wall.querySelectorAll(".ad video").forEach(v=>{
     v.addEventListener("click",()=>{
@@ -592,7 +655,8 @@ function renderWall(){
       if(v.paused){
         document.querySelectorAll(".ad video").forEach(o=>{if(o!==v){o.pause();o.closest(".ad").classList.remove("playing");}});
         const hv=document.getElementById("heroVid"); hv.muted=true; setSoundLabel();
-        v.muted=false; v.play(); card.classList.add("playing");
+        v.muted=false; card.classList.add("playing");
+        const p=v.play(); if(p) p.catch(()=>{ v.muted=true; v.play().catch(()=>{}); });
       } else { v.pause(); card.classList.remove("playing"); }
     });
   });
@@ -635,10 +699,12 @@ document.getElementById("heroSound").addEventListener("click",()=>{
 document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
 }));
-document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>{
-  const w=document.getElementById("wall"); const dir = b.classList.contains("next")?1:-1;
-  w.scrollBy({left: dir*(document.dir==="rtl"?-1:1)*270, behavior:"smooth"});
+const lb=document.getElementById("lb");
+document.querySelectorAll(".shot").forEach(b=>b.addEventListener("click",()=>{
+  document.getElementById("lbImg").src=b.dataset.src; lb.showModal();
 }));
+document.getElementById("lbClose").addEventListener("click",()=>lb.close());
+lb.addEventListener("click",e=>{ if(e.target===lb) lb.close(); });
 // reveal + count-up
 const io = new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting) return;
