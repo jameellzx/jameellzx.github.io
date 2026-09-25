@@ -190,6 +190,16 @@ dialog.lb::backdrop{background:rgba(20,20,20,.88)}
 dialog.lb .inner{overflow:auto;max-height:88vh;max-width:96vw;border-radius:12px;background:#fff}
 dialog.lb img{max-width:none;width:1600px}
 @media(max-width:700px){dialog.lb img{width:1200px}}
+dialog.lb .frame{position:relative}
+dialog.lb .frame::before,dialog.lb .frame::after{content:"";position:absolute;top:0;bottom:0;width:48px;pointer-events:none;opacity:0;transition:opacity .25s;z-index:1}
+dialog.lb .frame::before{left:0;border-radius:12px 0 0 12px;background:linear-gradient(to right,rgba(105,69,216,.55),transparent)}
+dialog.lb .frame::after{right:0;border-radius:0 12px 12px 0;background:linear-gradient(to left,rgba(105,69,216,.55),transparent)}
+dialog.lb .frame.more-l::before,dialog.lb .frame.more-r::after{opacity:1}
+.lb-hint{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);display:none;align-items:center;gap:10px;background:var(--lime);color:var(--ink);font:700 14px var(--font);padding:12px 20px;border-radius:var(--pill);box-shadow:var(--shadow);white-space:nowrap;z-index:2;transition:opacity .3s}
+.lb-hint.show{display:flex}
+.lb-hint.gone{opacity:0}
+.lb-hint .hand{display:inline-block;animation:swipe 1.4s ease-in-out infinite}
+@keyframes swipe{0%,100%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
 dialog.lb button{position:fixed;top:14px;inset-inline-end:14px;width:44px;height:44px;border-radius:50%;border:0;background:var(--lime);font-size:22px;cursor:pointer}
 
 /* case studies */
@@ -444,7 +454,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
     </div>
   </div>
 </section>
-<dialog class="lb" id="lb"><button aria-label="Close" id="lbClose">×</button><div class="inner"><img id="lbImg" alt=""></div></dialog>
+<dialog class="lb" id="lb"><button aria-label="Close" id="lbClose">×</button><div class="frame" id="lbFrame"><div class="inner" id="lbInner"><img id="lbImg" alt=""></div></div><div class="lb-hint" id="lbHint"><span>←</span><span class="hand">👆</span><span data-i18n="swipe">Swipe to see the full picture</span><span>→</span></div></dialog>
 
 <!-- ABOUT -->
 <section class="sec" id="about">
@@ -535,7 +545,7 @@ const I18N = {
   st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → ~3,000 KD",
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
   work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
-  on_ig:"Watch on Instagram ↗", zoom:"View full size ↗",
+  on_ig:"Watch on Instagram ↗", zoom:"View full size ↗", swipe:"Swipe to see the full picture",
   pr_h:"Don't take my word for it", pr_sub:"Real screenshots from the ad accounts and the store. Tap any one to see it full size.",
   pr1h:"Jarib Academy · Meta Ads Manager", pr1p:"304 messaging conversations for $673. Best ad: 149 conversations at $1.43 each.",
   pr2h:"Doki Doki · Meta Ads Manager", pr2p:"Every ad profitable. Best ad returned 6.92x its spend.",
@@ -597,7 +607,7 @@ const I18N = {
   st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← ~3,000 د.ك",
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
   work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
-  on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗",
+  on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗", swipe:"اسحب عشان تشوف الصورة كاملة",
   pr_h:"لا تصدقني، شوف بنفسك", pr_sub:"سكرينشوتات حقيقية من حسابات الإعلانات ومن المتجر. اضغط على أي وحدة عشان تشوفها كاملة.",
   pr1h:"أكاديمية جرّب · مدير إعلانات ميتا", pr1p:"304 محادثة بـ 673$. أفضل إعلان: 149 محادثة بـ 1.43$ للوحدة.",
   pr2h:"دوكي دوكي · مدير إعلانات ميتا", pr2p:"كل الإعلانات رابحة. أفضل إعلان رجّع 6.92 ضعف تكلفته.",
@@ -699,10 +709,26 @@ document.getElementById("heroSound").addEventListener("click",()=>{
 document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
 }));
-const lb=document.getElementById("lb");
-document.querySelectorAll(".shot").forEach(b=>b.addEventListener("click",()=>{
-  document.getElementById("lbImg").src=b.dataset.src; lb.showModal();
-}));
+const lb=document.getElementById("lb"), lbInner=document.getElementById("lbInner"),
+      lbFrame=document.getElementById("lbFrame"), lbHint=document.getElementById("lbHint"), lbImg=document.getElementById("lbImg");
+// show edge fades + a swipe hint whenever the screenshot is wider than the screen
+function lbEdges(){
+  const max=lbInner.scrollWidth-lbInner.clientWidth, x=Math.abs(lbInner.scrollLeft);
+  const atStart=x<4, atEnd=x>max-4, rtl=document.dir==="rtl";
+  lbFrame.classList.toggle("more-l", max>4 && (rtl?!atEnd:!atStart));
+  lbFrame.classList.toggle("more-r", max>4 && (rtl?!atStart:!atEnd));
+  return max>4;
+}
+function lbOpen(src){
+  lbHint.classList.remove("show","gone");
+  lbImg.onload=()=>{ lbInner.scrollLeft=0; if(lbEdges()) lbHint.classList.add("show"); };
+  lbImg.src=src; lb.showModal();
+}
+lbInner.addEventListener("scroll",()=>{
+  lbEdges();
+  if(lbHint.classList.contains("show") && !lbHint.classList.contains("gone")) setTimeout(()=>lbHint.classList.add("gone"),900);
+},{passive:true});
+document.querySelectorAll(".shot").forEach(b=>b.addEventListener("click",()=>lbOpen(b.dataset.src)));
 document.getElementById("lbClose").addEventListener("click",()=>lb.close());
 lb.addEventListener("click",e=>{ if(e.target===lb) lb.close(); });
 // reveal + count-up
