@@ -149,29 +149,29 @@ html[dir=rtl] .h2.up{text-transform:none}
 .wall-wrap{position:relative;margin-top:30px}
 .wall{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px var(--gut) 20px;scrollbar-width:none}
 .wall::-webkit-scrollbar{display:none}
-.ad{flex:0 0 min(250px,72vw);scroll-snap-align:center}
-.ad .phone{padding:7px;border-radius:30px;border-color:var(--lav)}
-.ad .phone::before{top:13px;width:50px;height:5px}
-.ad .phone video,.ad .phone img{border-radius:23px;cursor:pointer}
-.ad .play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
-.ad .play span{width:56px;height:56px;border-radius:50%;background:rgba(105,69,216,.9);display:grid;place-items:center;transition:opacity .2s}
-.ad .play svg{width:18px;fill:#fff;margin-inline-start:3px}
-.ad.playing .play span{opacity:0}
-.ad-meta{margin-top:14px}
-.ad-meta .pill{display:inline-block;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;border-radius:6px;padding:4px 9px;text-transform:uppercase;letter-spacing:.03em}
-.ad-meta .pill.win{background:var(--orange);color:#fff}
-.ad-meta h4{font-size:15px;margin-top:8px;line-height:1.3}
-.ad-meta p{font-size:13px;opacity:.75;margin-top:4px}
+.reel{flex:0 0 min(250px,72vw);scroll-snap-align:center}
+.reel .phone{padding:7px;border-radius:30px;border-color:var(--lav)}
+.reel .phone::before{top:13px;width:50px;height:5px}
+.reel .phone video,.reel .phone img{border-radius:23px;cursor:pointer}
+.reel .play{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.reel .play span{width:56px;height:56px;border-radius:50%;background:rgba(105,69,216,.9);display:grid;place-items:center;transition:opacity .2s}
+.reel .play svg{width:18px;fill:#fff;margin-inline-start:3px}
+.reel.playing .play span{opacity:0}
+.reel-meta{margin-top:14px}
+.reel-meta .pill{display:inline-block;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;border-radius:6px;padding:4px 9px;text-transform:uppercase;letter-spacing:.03em}
+.reel-meta .pill.win{background:var(--orange);color:#fff}
+.reel-meta h4{font-size:15px;margin-top:8px;line-height:1.3}
+.reel-meta p{font-size:13px;opacity:.75;margin-top:4px}
 .navbtn{position:absolute;top:38%;width:44px;height:44px;border-radius:50%;background:var(--lime);border:0;display:none;place-items:center;cursor:pointer;z-index:2}
 .navbtn svg{width:18px}
 .prev{inset-inline-start:8px}.next{inset-inline-end:8px}
 html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
-.ad.hide{display:none}
-.ad-meta a{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--lime)}
+.reel.hide{display:none}
+.reel-meta a{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--lime)}
 /* desktop: show every ad at once in a grid instead of a sideways carousel */
 @media(min-width:900px){
   .wall{display:grid;grid-template-columns:repeat(3,minmax(0,260px));justify-content:center;gap:40px 36px;overflow:visible;padding:10px var(--gut) 20px}
-  .ad{flex:none}
+  .reel{flex:none}
 }
 @media(min-width:1500px){.wall{grid-template-columns:repeat(6,minmax(0,210px));gap:28px}}
 
@@ -249,7 +249,9 @@ dialog.lb button{position:fixed;top:14px;inset-inline-end:14px;width:44px;height
 /* about */
 .about{display:grid;gap:40px;align-items:center}
 @media(min-width:900px){.about{grid-template-columns:.8fr 1.2fr}}
-.photo{aspect-ratio:4/5;border-radius:var(--r-lg);background:var(--lav);border:3px dashed var(--purple);display:grid;place-items:center;text-align:center;color:var(--purple);font-weight:600;padding:20px;max-width:380px;width:100%;margin:0 auto}
+.photo{position:relative;max-width:380px;width:100%;margin:0 auto}
+.photo img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r-lg);border:4px solid var(--purple);box-shadow:0 0 0 10px var(--lav),var(--shadow)}
+.photo-tag{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--lime);color:var(--ink);font-weight:700;font-size:13px;padding:9px 18px;border-radius:var(--pill);white-space:nowrap;box-shadow:var(--shadow)}
 .about h2{font-size:clamp(28px,4vw,42px);line-height:1.1;color:var(--purple)}
 .about p{margin-top:16px;font-size:16px;color:#3b3a36}
 
@@ -508,7 +510,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 <!-- ABOUT -->
 <section class="sec" id="about">
   <div class="wrap about">
-    <div class="photo rv" data-i18n="photo">Photo coming soon</div>
+    <div class="photo rv"><img src="photos/jameel.jpg" alt="Jameel Hilal" loading="lazy"><span class="photo-tag" data-i18n="photo_tag">Performance Media Strategist</span></div>
     <div class="rv">
       <p class="eyebrow" data-i18n-html="about_k">About <b>Jameel</b></p>
       <h2 data-i18n="about_h">Most businesses don't understand the algorithm. I do.</h2>
@@ -618,7 +620,7 @@ const I18N = {
   cs2p:"A tiny niche: young women collecting Pop Mart-style blind boxes. Their biggest pain is getting duplicates and wasting money on luck. I hit that one pain from 4 angles, kept every ad profitable, and scaled what worked.",
   a1i:"Angle 1 · Returns", a1:"\"Can I return my duplicates?\"", a2i:"Angle 2 · How-to", a2:"\"Don't buy another blind box until you know this\"",
   a3i:"Angle 3 · Gifting", a3:"\"The awkward moment your gift is a dud\"", a4i:"Angle 4 · Money", a4:"\"She went broke on duplicates\"",
-  photo:"Photo coming soon", about_k:"About <b>Jameel</b>", about_h:"Most businesses don't understand the algorithm. I do.",
+  photo_tag:"Performance Media Strategist", about_k:"About <b>Jameel</b>", about_h:"Most businesses don't understand the algorithm. I do.",
   about_p1:"I'm a performance media strategist in Kuwait. I build ads the way a salesperson thinks: find the buyer, find what hurts, then say it better than anyone else.",
   about_p2:"I also handle business development, so I care about sales, not views. I proved the system on my own store first, then for clients.",
   faq_h:"Frequently asked questions",
@@ -681,7 +683,7 @@ const I18N = {
   cs2p:"جمهور صغير جداً: بنات يجمعون البلايند بوكس مثل Pop Mart. أكبر ألم عندهم هو التكرار وخسارة الفلوس على الحظ. ضربت على هالألم من ٤ زوايا، كل الإعلانات كانت رابحة، وكبّرت اللي نجح.",
   a1i:"زاوية ١ · الإرجاع", a1:"\"أقدر أرجّع الألعاب المكررة؟\"", a2i:"زاوية ٢ · شرح", a2:"\"لا تشترين بلايند بوكس قبل ما تعرفين هذا\"",
   a3i:"زاوية ٣ · الهدايا", a3:"\"الموقف المحرج لما هديتك تطلع خايبة\"", a4i:"زاوية ٤ · الفلوس", a4:"\"أفلست من التكرار\"",
-  photo:"الصورة قريباً", about_k:"عن <b>جميل</b>", about_h:"أغلب البزنسات ما تفهم الخوارزمية. أنا أفهمها.",
+  photo_tag:"خبير استراتيجيات الإعلانات", about_k:"عن <b>جميل</b>", about_h:"أغلب البزنسات ما تفهم الخوارزمية. أنا أفهمها.",
   about_p1:"أنا خبير استراتيجيات إعلانات في الكويت. أبني الإعلان بعقلية البيّاع: ألقى المشتري، ألقى وين يوجعه، وأقولها أحسن من أي أحد.",
   about_p2:"أشتغل بعد في تطوير الأعمال، فيهمني البيع مو المشاهدات. جرّبت النظام على متجري أول، وبعدين مع العملاء.",
   faq_h:"الأسئلة الشائعة",
@@ -703,18 +705,18 @@ function renderWall(){
   const t = I18N[lang], wall = document.getElementById("wall");
   wall.innerHTML = ADS.map(a=>{
     const [brand,title,desc] = t.ad[a.id];
-    return `<div class="ad" data-b="${a.brand}">
+    return `<div class="reel" data-b="${a.brand}">
       <div class="phone" style="position:relative">
         <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
         <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
       </div>
-      <div class="ad-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
+      <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
     </div>`;}).join("");
-  wall.querySelectorAll(".ad video").forEach(v=>{
+  wall.querySelectorAll(".reel video").forEach(v=>{
     v.addEventListener("click",()=>{
-      const card=v.closest(".ad");
+      const card=v.closest(".reel");
       if(v.paused){
-        document.querySelectorAll(".ad video").forEach(o=>{if(o!==v){o.pause();o.closest(".ad").classList.remove("playing");}});
+        document.querySelectorAll(".reel video").forEach(o=>{if(o!==v){o.pause();o.closest(".reel").classList.remove("playing");}});
         const hv=document.getElementById("heroVid"); hv.muted=true; setSoundLabel();
         v.muted=false; card.classList.add("playing");
         const p=v.play(); if(p) p.catch(()=>{ v.muted=true; v.play().catch(()=>{}); });
@@ -724,7 +726,7 @@ function renderWall(){
   applyFilter(document.querySelector(".filt.on").dataset.f);
 }
 function applyFilter(f){
-  document.querySelectorAll(".ad").forEach(a=>a.classList.toggle("hide", f!=="all" && a.dataset.b!==f));
+  document.querySelectorAll(".reel").forEach(a=>a.classList.toggle("hide", f!=="all" && a.dataset.b!==f));
 }
 function setSoundLabel(){
   const hv=document.getElementById("heroVid");
