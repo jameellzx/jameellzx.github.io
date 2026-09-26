@@ -150,6 +150,9 @@ html[dir=rtl] .h2.up{text-transform:none}
 .wall{gap:22px}
 .wall-wrap{margin-top:30px}
 .reel{flex:0 0 min(250px,70vw)}
+@media(min-width:1400px){.reel{flex-basis:clamp(250px,17vw,340px)}.site-grid .site{flex-basis:clamp(360px,24vw,480px)}}
+.track-x.fits{justify-content:center}
+.carousel.fits .navbtn{display:none}
 .reel .phone{padding:7px;border-radius:30px;border-color:var(--lav)}
 .reel .phone::before{top:13px;width:50px;height:5px}
 .reel .phone video,.reel .phone img{border-radius:23px;cursor:pointer}
@@ -170,13 +173,15 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 .reel-meta a{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--lime)}
 /* carousels (ads + websites): swipe on phones, arrows everywhere */
 .carousel{position:relative}
-.track-x{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px max(var(--gut),calc((100vw - var(--max))/2 + var(--gut))) 24px;scroll-padding-inline:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)))}
+.track-x{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px var(--gut) 24px;scroll-padding-inline:var(--gut);cursor:grab;-webkit-user-select:none;user-select:none}
+.track-x.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.track-x img,.track-x video{-webkit-user-drag:none;user-select:none}
+@media(min-width:768px){.track-x{padding-inline:24px;scroll-padding-inline:24px}}
 .track-x::-webkit-scrollbar{display:none}
 .track-x > *{scroll-snap-align:start}
 .navbtn{display:grid;box-shadow:var(--shadow);transition:opacity .2s,transform .2s}
 .navbtn:hover{transform:scale(1.08)}
 .navbtn[disabled]{opacity:0;pointer-events:none}
-@media(min-width:1300px){.prev{inset-inline-start:calc((100vw - var(--max))/2 - 56px)}.next{inset-inline-end:calc((100vw - var(--max))/2 - 56px)}}
 @media(max-width:600px){.navbtn{width:38px;height:38px}}
 
 /* case studies sit right under the ad wall: share its dark band */
@@ -836,18 +841,39 @@ document.getElementById("heroSound").addEventListener("click",()=>{
 document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
 }));
-// carousels: arrow buttons scroll one card; hide an arrow at that end
+// carousels: auto-advance, arrows, mouse drag, touch swipe
 document.querySelectorAll(".carousel").forEach(c=>{
   const tr=c.querySelector(".track-x"), prev=c.querySelector(".prev"), next=c.querySelector(".next");
-  const step=()=>{ const card=[...tr.children].find(el=>el.offsetParent); return card ? card.getBoundingClientRect().width+22 : 300; };
   const rtl=()=>document.documentElement.dir==="rtl";
-  const upd=()=>{ const max=tr.scrollWidth-tr.clientWidth, x=Math.abs(tr.scrollLeft);
-    prev.disabled = x<5; next.disabled = x>max-5; };
-  prev.addEventListener("click",()=>tr.scrollBy({left:(rtl()?1:-1)*step()}));
-  next.addEventListener("click",()=>tr.scrollBy({left:(rtl()?-1:1)*step()}));
+  const step=()=>{ const card=[...tr.children].find(el=>el.offsetParent); return card ? card.getBoundingClientRect().width+22 : 300; };
+  const maxX=()=>tr.scrollWidth-tr.clientWidth, x=()=>Math.abs(tr.scrollLeft);
+  const upd=()=>{ const fits=maxX()<=5; tr.classList.toggle("fits",fits); c.classList.toggle("fits",fits); prev.disabled = x()<5; next.disabled = x()>maxX()-5; };
+  const go=dir=>tr.scrollBy({left:(rtl()?-1:1)*dir*step()});
+  let hold=0, hover=false;                       // hold = time until autoplay may resume
+  const pause=(ms=7000)=>{ hold=Date.now()+ms; };
+  prev.addEventListener("click",()=>{ pause(); go(-1); });
+  next.addEventListener("click",()=>{ pause(); go(1); });
   tr.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd);
+  tr.addEventListener("reset",()=>{ tr.scrollTo({left:0,behavior:"auto"}); setTimeout(upd,50); });
   new MutationObserver(()=>{ tr.scrollLeft=0; setTimeout(upd,50); }).observe(tr,{childList:true});
-  tr.addEventListener("reset",()=>{ tr.scrollLeft=0; setTimeout(upd,50); });
+  c.addEventListener("mouseenter",()=>hover=true); c.addEventListener("mouseleave",()=>hover=false);
+  tr.addEventListener("touchstart",()=>pause(),{passive:true});
+  // mouse drag (touch already scrolls natively)
+  let down=false, moved=false, sx=0, sl=0;
+  tr.addEventListener("pointerdown",e=>{ if(e.pointerType!=="mouse"||e.button!==0) return; down=true; moved=false; sx=e.clientX; sl=tr.scrollLeft; pause(); });
+  window.addEventListener("pointermove",e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>5){ moved=true; tr.classList.add("dragging"); } if(moved) tr.scrollLeft=sl-dx; });
+  window.addEventListener("pointerup",()=>{ if(!down) return; down=false; if(moved){ const i=Math.round(x()/step()); tr.classList.remove("dragging"); tr.scrollTo({left:(rtl()?-1:1)*i*step()}); } });
+  tr.addEventListener("click",e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; } },true);
+  tr.addEventListener("dragstart",e=>e.preventDefault());
+  // autoplay: one card every 3s, loop back to the start at the end
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduce) setInterval(()=>{
+    if(hover||down||document.hidden||Date.now()<hold) return;
+    if(tr.querySelector(".playing")) return;
+    const r=tr.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+    if(maxX()<=5) return;
+    if(x()>=maxX()-5) tr.scrollTo({left:0}); else go(1);
+  },3000);
   setTimeout(upd,300);
 });
 const lb=document.getElementById("lb"), lbInner=document.getElementById("lbInner"),
