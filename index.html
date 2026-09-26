@@ -253,6 +253,15 @@ dialog.lb button{position:fixed;top:14px;inset-inline-end:14px;width:44px;height
 /* case studies */
 .cases{margin-top:48px;display:grid;gap:24px}
 @media(min-width:960px){.cases{grid-template-columns:1fr 1fr}}
+@media(max-width:767px){
+  .cases{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(-1*var(--gut));padding:0 var(--gut) 6px;scroll-padding-inline:var(--gut);align-items:stretch}
+  .cases::-webkit-scrollbar{display:none}
+  .cases .case{flex:0 0 88%;scroll-snap-align:start}
+}
+.case-dots{display:none;justify-content:center;gap:8px;margin-top:18px}
+@media(max-width:767px){.case-dots{display:flex}}
+.case-dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:var(--lav);opacity:.35;cursor:pointer;transition:opacity .2s,width .2s}
+.case-dots button.on{opacity:1;width:22px;border-radius:5px;background:var(--lime)}
 .case{background:var(--ink-2);border:5px solid var(--lav);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column}
 .case-top{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:22px;align-items:center}
 .case-top img{border-radius:14px;aspect-ratio:9/16;object-fit:cover}
@@ -409,7 +418,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
     <div class="cases">
       <article class="case rv">
         <div class="case-top">
-          <img src="videos/jarib-winner.jpg" alt="Jarib Academy winning ad">
+          <img src="photos/jarib-students-2.jpg" alt="Jarib Academy students with coaches">
           <div>
             <span class="kick" data-i18n="cs1k">14x return</span>
             <h3 data-i18n="cs1h">Jarib Academy: filling a skate bootcamp from Instagram</h3>
@@ -437,7 +446,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
       </article>
       <article class="case rv">
         <div class="case-top">
-          <img src="videos/doki-cleaver.jpg" alt="Doki Doki ad">
+          <img src="photos/doki-booth.jpg" alt="Doki Doki booth">
           <div>
             <span class="kick" data-i18n="cs2k">7,468 KD in sales</span>
             <h3 data-i18n="cs2h">Doki Doki: building a blind-box brand from zero</h3>
@@ -461,6 +470,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
         </div>
       </article>
     </div>
+    <div class="case-dots" aria-label="Case studies"></div>
   </div>
 </section>
 
@@ -870,11 +880,10 @@ document.querySelectorAll(".carousel").forEach(c=>{
   window.addEventListener("pointerup",()=>{ if(!down) return; down=false; tr.classList.remove("dragging"); pos=getX(); wrap(); setX(pos); pause(2500); });
   tr.addEventListener("click",e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; } },true);
   tr.addEventListener("dragstart",e=>e.preventDefault());
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const frame=now=>{
     const dt=Math.min(64, now-last); last=now;
     const r=tr.getBoundingClientRect(), onScreen=r.bottom>0 && r.top<innerHeight;
-    const idle=!reduce && !hover && !down && !document.hidden && now>=hold && onScreen && !tr.querySelector(".playing");
+    const idle=!hover && !down && !document.hidden && now>=hold && onScreen && !tr.querySelector(".playing");
     if(idle){
       if(Math.abs(getX()-pos)>3) pos=getX();          // user scrolled it: carry on from there
       pos+=SPEED*dt/1000; wrap(); setX(pos);
@@ -883,6 +892,15 @@ document.querySelectorAll(".carousel").forEach(c=>{
   };
   requestAnimationFrame(frame);
 });
+// case studies: swipe on phones, dots show which card is in view
+(()=>{
+  const box=document.querySelector(".cases"), dots=document.querySelector(".case-dots"), cards=[...box.querySelectorAll(".case")];
+  cards.forEach((c,i)=>{ const b=document.createElement("button"); b.setAttribute("aria-label",`Case study ${i+1}`);
+    b.addEventListener("click",()=>c.scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"})); dots.append(b); });
+  const mark=()=>{ const x=Math.abs(box.scrollLeft), w=cards[0].offsetWidth||1, k=Math.min(cards.length-1,Math.round(x/w));
+    [...dots.children].forEach((d,i)=>d.classList.toggle("on",i===k)); };
+  box.addEventListener("scroll",mark,{passive:true}); mark();
+})();
 const lb=document.getElementById("lb"), lbInner=document.getElementById("lbInner"),
       lbFrame=document.getElementById("lbFrame"), lbHint=document.getElementById("lbHint"), lbImg=document.getElementById("lbImg");
 // show edge fades + a swipe hint whenever the screenshot is wider than the screen
