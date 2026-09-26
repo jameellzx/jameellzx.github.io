@@ -151,8 +151,6 @@ html[dir=rtl] .h2.up{text-transform:none}
 .wall-wrap{margin-top:30px}
 .reel{flex:0 0 min(250px,70vw)}
 @media(min-width:1400px){.reel{flex-basis:clamp(250px,17vw,340px)}.site-grid .site{flex-basis:clamp(360px,24vw,480px)}}
-.track-x.fits{justify-content:center}
-.carousel.fits .navbtn{display:none}
 .reel .phone{padding:7px;border-radius:30px;border-color:var(--lav)}
 .reel .phone::before{top:13px;width:50px;height:5px}
 .reel .phone video,.reel .phone img{border-radius:23px;cursor:pointer}
@@ -173,12 +171,11 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 .reel-meta a{display:inline-block;margin-top:8px;font-size:12px;font-weight:600;color:var(--lime)}
 /* carousels (ads + websites): swipe on phones, arrows everywhere */
 .carousel{position:relative}
-.track-x{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:10px var(--gut) 24px;scroll-padding-inline:var(--gut);cursor:grab;-webkit-user-select:none;user-select:none}
-.track-x.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.track-x{display:flex;overflow-x:auto;scrollbar-width:none;padding:10px var(--gut) 24px;scroll-padding-inline:var(--gut);cursor:grab;-webkit-user-select:none;user-select:none}
+.track-x.dragging{cursor:grabbing}
 .track-x img,.track-x video{-webkit-user-drag:none;user-select:none}
 @media(min-width:768px){.track-x{padding-inline:24px;scroll-padding-inline:24px}}
 .track-x::-webkit-scrollbar{display:none}
-.track-x > *{scroll-snap-align:start}
 .navbtn{display:grid;box-shadow:var(--shadow);transition:opacity .2s,transform .2s}
 .navbtn:hover{transform:scale(1.08)}
 .navbtn[disabled]{opacity:0;pointer-events:none}
@@ -773,23 +770,25 @@ const SITES = [
 ];
 function renderSites(){
   const t = I18N[lang];
-  document.getElementById("siteGrid").innerHTML = SITES.map(([id,name,cat],i)=>`
-    <a class="site" href="https://jameellzx.github.io/websites-examples/${id}/" target="_blank" rel="noopener">
+  const one = clone => SITES.map(([id,name,cat],i)=>`
+    <a class="site" ${clone?'data-clone aria-hidden="true" tabindex="-1"':''} href="https://jameellzx.github.io/websites-examples/${id}/" target="_blank" rel="noopener">
       <div class="site-shot"><img src="sites/${id}.webp" alt="${name} website" loading="lazy"></div>
       <div class="site-meta"><b>${name}</b><span class="pill">${t.cat[cat]}</span></div>
     </a>`).join("");
+  document.getElementById("siteGrid").innerHTML = one(false) + one(true);
 }
 function renderWall(){
   const t = I18N[lang], wall = document.getElementById("wall");
-  wall.innerHTML = ADS.map(a=>{
+  const one = clone => ADS.map(a=>{
     const [brand,title,desc] = t.ad[a.id];
-    return `<div class="reel" data-b="${a.brand}">
+    return `<div class="reel" data-b="${a.brand}" ${clone?'data-clone aria-hidden="true"':''}>
       <div class="phone" style="position:relative">
         <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
         <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
       </div>
       <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
     </div>`;}).join("");
+  wall.innerHTML = one(false) + one(true);
   wall.querySelectorAll(".reel video").forEach(v=>{
     v.addEventListener("click",()=>{
       const card=v.closest(".reel");
@@ -841,40 +840,48 @@ document.getElementById("heroSound").addEventListener("click",()=>{
 document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
 }));
-// carousels: auto-advance, arrows, mouse drag, touch swipe
+// carousels: slow continuous glide (loops forever), arrows, mouse drag, touch swipe.
+// Each list is rendered twice; when the glide passes the first copy it jumps back by one copy, invisibly.
 document.querySelectorAll(".carousel").forEach(c=>{
   const tr=c.querySelector(".track-x"), prev=c.querySelector(".prev"), next=c.querySelector(".next");
+  const SPEED=28;                                   // pixels per second
   const rtl=()=>document.documentElement.dir==="rtl";
-  const step=()=>{ const card=[...tr.children].find(el=>el.offsetParent); return card ? card.getBoundingClientRect().width+22 : 300; };
-  const maxX=()=>tr.scrollWidth-tr.clientWidth, x=()=>Math.abs(tr.scrollLeft);
-  const upd=()=>{ const fits=maxX()<=5; tr.classList.toggle("fits",fits); c.classList.toggle("fits",fits); prev.disabled = x()<5; next.disabled = x()>maxX()-5; };
-  const go=dir=>tr.scrollBy({left:(rtl()?-1:1)*dir*step()});
-  let hold=0, hover=false;                       // hold = time until autoplay may resume
-  const pause=(ms=7000)=>{ hold=Date.now()+ms; };
-  prev.addEventListener("click",()=>{ pause(); go(-1); });
-  next.addEventListener("click",()=>{ pause(); go(1); });
-  tr.addEventListener("scroll",upd,{passive:true}); window.addEventListener("resize",upd);
-  tr.addEventListener("reset",()=>{ tr.scrollTo({left:0,behavior:"auto"}); setTimeout(upd,50); });
-  new MutationObserver(()=>{ tr.scrollLeft=0; setTimeout(upd,50); }).observe(tr,{childList:true});
+  const vis=()=>[...tr.children].filter(el=>el.offsetParent);
+  const step=()=>{ const v=vis(); return v.length>1 ? Math.abs(v[1].offsetLeft-v[0].offsetLeft) : 300; };
+  const half=()=>{ const v=vis(), k=v.findIndex(el=>el.hasAttribute("data-clone")); return k>0 ? Math.abs(v[k].offsetLeft-v[0].offsetLeft) : 0; };
+  const setX=p=>{ tr.scrollLeft = rtl() ? -p : p; };
+  const getX=()=>Math.abs(tr.scrollLeft);
+  let pos=0, hold=0, hover=false, down=false, moved=false, sx=0, sp=0, last=performance.now();
+  const pause=(ms=4000)=>{ hold=performance.now()+ms; };
+  const wrap=()=>{ const h=half(); if(h>0){ while(pos>=h) pos-=h; while(pos<0) pos+=h; } };
+  const nudge=dir=>{ pause(); pos=getX(); if(dir<0 && pos<step()) { pos+=half(); setX(pos); }
+    tr.scrollBy({left:(rtl()?-1:1)*dir*step(), behavior:"smooth"}); };
+  prev.addEventListener("click",()=>nudge(-1));
+  next.addEventListener("click",()=>nudge(1));
+  tr.addEventListener("reset",()=>{ pos=0; setX(0); });
+  new MutationObserver(()=>{ pos=0; setX(0); }).observe(tr,{childList:true});
   c.addEventListener("mouseenter",()=>hover=true); c.addEventListener("mouseleave",()=>hover=false);
   tr.addEventListener("touchstart",()=>pause(),{passive:true});
-  // mouse drag (touch already scrolls natively)
-  let down=false, moved=false, sx=0, sl=0;
-  tr.addEventListener("pointerdown",e=>{ if(e.pointerType!=="mouse"||e.button!==0) return; down=true; moved=false; sx=e.clientX; sl=tr.scrollLeft; pause(); });
-  window.addEventListener("pointermove",e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>5){ moved=true; tr.classList.add("dragging"); } if(moved) tr.scrollLeft=sl-dx; });
-  window.addEventListener("pointerup",()=>{ if(!down) return; down=false; if(moved){ const i=Math.round(x()/step()); tr.classList.remove("dragging"); tr.scrollTo({left:(rtl()?-1:1)*i*step()}); } });
+  tr.addEventListener("scroll",()=>{ const h=half(); if(h>0 && getX()>=h+2 && !down){ pos=getX()-h; setX(pos); } },{passive:true});
+  // mouse drag (touch scrolls natively)
+  tr.addEventListener("pointerdown",e=>{ if(e.pointerType!=="mouse"||e.button!==0) return; down=true; moved=false; sx=e.clientX; sp=getX(); pause(); });
+  window.addEventListener("pointermove",e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>5){ moved=true; tr.classList.add("dragging"); }
+    if(moved){ pos=sp-(rtl()?-dx:dx); if(pos<0){ pos+=half(); sp+=half(); } setX(pos); } });
+  window.addEventListener("pointerup",()=>{ if(!down) return; down=false; tr.classList.remove("dragging"); pos=getX(); wrap(); setX(pos); pause(2500); });
   tr.addEventListener("click",e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; } },true);
   tr.addEventListener("dragstart",e=>e.preventDefault());
-  // autoplay: one card every 3s, loop back to the start at the end
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(!reduce) setInterval(()=>{
-    if(hover||down||document.hidden||Date.now()<hold) return;
-    if(tr.querySelector(".playing")) return;
-    const r=tr.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
-    if(maxX()<=5) return;
-    if(x()>=maxX()-5) tr.scrollTo({left:0}); else go(1);
-  },3000);
-  setTimeout(upd,300);
+  const frame=now=>{
+    const dt=Math.min(64, now-last); last=now;
+    const r=tr.getBoundingClientRect(), onScreen=r.bottom>0 && r.top<innerHeight;
+    const idle=!reduce && !hover && !down && !document.hidden && now>=hold && onScreen && !tr.querySelector(".playing");
+    if(idle){
+      if(Math.abs(getX()-pos)>3) pos=getX();          // user scrolled it: carry on from there
+      pos+=SPEED*dt/1000; wrap(); setX(pos);
+    }
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
 });
 const lb=document.getElementById("lb"), lbInner=document.getElementById("lbInner"),
       lbFrame=document.getElementById("lbFrame"), lbHint=document.getElementById("lbHint"), lbImg=document.getElementById("lbImg");
