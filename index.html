@@ -118,12 +118,13 @@ html[dir=rtl] .h2.up{text-transform:none}
 .cards{margin-top:48px;display:grid;gap:16px}
 @media(min-width:640px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1040px){.cards{grid-template-columns:repeat(4,1fr)}}
-.card{border-radius:var(--r);padding:22px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s}
+.card{border-radius:var(--r);padding:22px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s}
 .card:hover{transform:translateY(-6px) rotate(-.6deg)}
+@media(max-width:1023px){.card{min-height:0}}
 .card .ic{width:30px;height:30px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
 .card .ic svg{width:12px;fill:#fff}
-.card h3{font-size:clamp(22px,2.2vw,28px);line-height:1.1;font-weight:700;margin-top:14px}
-.card p{font-size:14px;margin-top:24px}
+.card h3{font-size:clamp(22px,2.2vw,28px);line-height:1.1;font-weight:700}
+.card p{font-size:14px;margin-top:16px}
 .c-lime{background:var(--lime);color:var(--ink)}
 .c-blue{background:var(--blue);color:#fff}.c-blue .ic,.c-orange .ic{background:#fff}.c-blue .ic svg{fill:var(--blue)}
 .c-orange{background:var(--orange);color:#fff}.c-orange .ic svg{fill:var(--orange)}
@@ -509,10 +510,10 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
     <h2 class="h2 rv" data-i18n="svc_h">Creative that drives real sales</h2>
     <p class="sub rv" data-i18n="svc_sub">One person from idea to results. No hand-offs, nothing lost in translation.</p>
     <div class="cards">
-      <div class="card c-lime rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c1h">Research-driven scripts</h3></div><p data-i18n="c1p">Hooks and scripts built from real customer pains and objections, not guesses.</p></div>
-      <div class="card c-blue rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c2h">Filmed &amp; edited in-house</h3></div><p data-i18n="c2p">I shoot, act, and edit. UGC style, native to Reels and TikTok, made to stop the scroll.</p></div>
-      <div class="card c-orange rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c3h">Meta ads management</h3></div><p data-i18n="c3p">Campaign setup, angle testing, budget moves and scaling the winners.</p></div>
-      <div class="card c-lav rv"><div><span class="ic"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span><h3 data-i18n="c4h">Websites that convert</h3></div><p data-i18n="c4p">Premium, easy-to-use sites so the traffic your ads bring actually buys.</p></div>
+      <div class="card c-lime rv"><div><h3 data-i18n="c1h">Research-driven scripts</h3></div><p data-i18n="c1p">Hooks and scripts built from real customer pains and objections, not guesses.</p></div>
+      <div class="card c-blue rv"><div><h3 data-i18n="c2h">Filmed &amp; edited in-house</h3></div><p data-i18n="c2p">I shoot, act, and edit. UGC style, native to Reels and TikTok, made to stop the scroll.</p></div>
+      <div class="card c-orange rv"><div><h3 data-i18n="c3h">Meta ads management</h3></div><p data-i18n="c3p">Campaign setup, angle testing, budget moves and scaling the winners.</p></div>
+      <div class="card c-lav rv"><div><h3 data-i18n="c4h">Websites that convert</h3></div><p data-i18n="c4p">Premium, easy-to-use sites so the traffic your ads bring actually buys.</p></div>
     </div>
     <div class="extras rv">
       <span class="chip" data-i18n="x1">SEO</span><span class="chip" data-i18n="x2">Content strategy</span><span class="chip" data-i18n="x3">Content calendars</span><span class="chip" data-i18n="x4">AI training (Claude &amp; AI agents)</span>
