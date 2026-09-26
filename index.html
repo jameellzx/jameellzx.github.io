@@ -177,6 +177,25 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 /* case studies sit right under the ad wall: share its dark band */
 #work + #cases{padding-top:20px}
 
+/* websites I build */
+.sites{background:var(--cream)}
+.site-grid{margin-top:44px;display:grid;gap:22px}
+@media(min-width:640px){.site-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.site-grid{grid-template-columns:repeat(3,1fr)}}
+.site{display:block;background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:0 7px 23px rgba(53,35,183,.08);transition:transform .25s,box-shadow .25s}
+.site:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.site.hide{display:none}
+.site-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:var(--lav)}
+.site-bar i{width:9px;height:9px;border-radius:50%;background:var(--purple);opacity:.35}
+.site-bar span{margin-inline-start:8px;font-size:11px;color:var(--purple);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}
+.site-shot{aspect-ratio:16/10;overflow:hidden;background:#eee}
+.site-shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
+.site:hover .site-shot img{transform:scale(1.04)}
+.site-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px}
+.site-meta b{font-size:15px}
+.site-meta .pill{background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;border-radius:6px;padding:4px 9px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap}
+.sites-more{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+
 /* brands band */
 .brands{background:var(--cream);border-top:1px solid rgba(36,36,35,.08);padding:26px 0}
 .brands-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px}
@@ -488,6 +507,19 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
   </div>
 </section>
 
+<!-- SITES -->
+<section class="sec sites" id="sites" data-sec="sites">
+  <div class="wrap">
+    <h2 class="h2 up rv" data-i18n="sites_h">Websites I build</h2>
+    <p class="sub rv" data-i18n="sites_sub">Good ads need a page that sells. Store and landing page examples I built. Tap any one to open the live site.</p>
+    <div class="site-grid" id="siteGrid"></div>
+    <div class="sites-more rv">
+      <button class="btn btn-dark" id="sitesMore"><span data-i18n="sites_more">Show all 15</span></button>
+      <a class="btn btn-purple" href="https://jameellzx.github.io/websites-examples/" target="_blank" rel="noopener"><span data-i18n="sites_all">Open the full gallery</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="sec lavsec" id="process" data-sec="process">
   <div class="wrap">
@@ -603,6 +635,9 @@ const I18N = {
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
   work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
   on_ig:"Watch on Instagram ↗", zoom:"View full size ↗", swipe:"Swipe to see the full picture",
+  sites_h:"Websites I build", sites_sub:"Good ads need a page that sells. Store and landing page examples I built. Tap any one to open the live site.",
+  sites_more:"Show all 15", sites_all:"Open the full gallery",
+  cat:{food:"Food",spa:"Spa",pets:"Pets",furniture:"Furniture",skincare:"Skincare",florist:"Florist",health:"Health",electronics:"Electronics",fitness:"Fitness",kids:"Kids",beauty:"Beauty",fashion:"Fashion"},
   brands_k:"Brands I've grown", gal_k:"Real students from the campaign", visit_site:"Visit the store",
   pr_h:"Don't take my word for it", pr_sub:"Real screenshots from the ad accounts and the store. Tap any one to see it full size.",
   pr1h:"Jarib Academy · Meta Ads Manager", pr1p:"304 messaging conversations for $673. Best ad: 149 conversations at $1.43 each.",
@@ -669,6 +704,9 @@ const I18N = {
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
   work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
   on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗", swipe:"اسحب عشان تشوف الصورة كاملة",
+  sites_h:"مواقع أبنيها", sites_sub:"الإعلان الزين يحتاج صفحة تبيع. أمثلة لمتاجر وصفحات هبوط سويتها. اضغط على أي وحدة عشان تفتح الموقع.",
+  sites_more:"شوف الـ15 كلها", sites_all:"افتح المعرض كامل",
+  cat:{food:"أكل",spa:"سبا",pets:"حيوانات أليفة",furniture:"أثاث",skincare:"عناية بالبشرة",florist:"ورد",health:"صحة",electronics:"إلكترونيات",fitness:"رياضة",kids:"أطفال",beauty:"جمال",fashion:"أزياء"},
   brands_k:"براندات كبّرتها", gal_k:"طلاب حقيقيين من الحملة", visit_site:"زور المتجر",
   pr_h:"لا تصدقني، شوف بنفسك", pr_sub:"سكرينشوتات حقيقية من حسابات الإعلانات ومن المتجر. اضغط على أي وحدة عشان تشوفها كاملة.",
   pr1h:"أكاديمية جرّب · مدير إعلانات ميتا", pr1p:"304 محادثة بـ 673$. أفضل إعلان: 149 محادثة بـ 1.43$ للوحدة.",
@@ -713,6 +751,25 @@ let lang = "en";
 try{ const s = localStorage.getItem("jh-lang"); if(s==="ar"||s==="en") lang = s; }catch(e){}
 if(new URLSearchParams(location.search).get("lang")==="ar") lang="ar";
 
+const SITES = [
+  ["chips-snack","Chips Snack","food"],["glow","Glow Spa","spa"],["petpad","Pet Pad Store","pets"],
+  ["epitome","Epitome Furniture","furniture"],["glowly-skin","Glowly Skin","skincare"],["bloom-florist","Bloom Florist","florist"],
+  ["oral-care","Oral Care","health"],["hair-dryer","Hair Dryer","electronics"],["yoga-studio","Yoga Studio","fitness"],
+  ["baby-toys","Baby Toy Store","kids"],["natural-beauty","Natural Beauty","beauty"],["routine-skincare","Routine Skincare","skincare"],
+  ["essential-furniture","Essential by Design","furniture"],["fashion-store","Fashion Store","fashion"],["minimalist-fashion","Minimalist Magic","fashion"]
+];
+let sitesOpen = false;
+function renderSites(){
+  const t = I18N[lang];
+  document.getElementById("siteGrid").innerHTML = SITES.map(([id,name,cat],i)=>`
+    <a class="site ${!sitesOpen && i>=6 ? "hide" : ""}" href="https://jameellzx.github.io/websites-examples/${id}/" target="_blank" rel="noopener">
+      <div class="site-bar"><i></i><i></i><i></i><span>jameellzx.github.io/${id}</span></div>
+      <div class="site-shot"><img src="sites/${id}.webp" alt="${name} website" loading="lazy"></div>
+      <div class="site-meta"><b>${name}</b><span class="pill">${t.cat[cat]}</span></div>
+    </a>`).join("");
+  document.getElementById("sitesMore").style.display = sitesOpen ? "none" : "";
+}
+document.getElementById("sitesMore").addEventListener("click",()=>{ sitesOpen = true; renderSites(); });
 function renderWall(){
   const t = I18N[lang], wall = document.getElementById("wall");
   wall.innerHTML = ADS.map(a=>{
@@ -756,7 +813,7 @@ function applyLang(){
   const words = t.marquee.concat(t.marquee);
   document.getElementById("track").innerHTML = words.concat(words).map(w=>`<span>${w}</span>`).join("");
   document.querySelectorAll(".stat .big").forEach(el=>{ if(el.dataset.done) el.textContent = fmt(el, +el.dataset.count); });
-  setSoundLabel(); renderWall();
+  setSoundLabel(); renderWall(); renderSites();
 }
 function fmt(el,n){
   const d=+(el.dataset.dec||0), p=el.dataset.prefix||"";
