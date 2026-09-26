@@ -177,7 +177,7 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 /* case studies sit right under the ad wall: share its dark band */
 #work + #cases{padding-top:20px}
 
-/* websites I build */
+/* website examples */
 .sites{background:var(--cream)}
 .site-grid{margin-top:44px;display:grid;gap:22px}
 @media(min-width:640px){.site-grid{grid-template-columns:repeat(2,1fr)}}
@@ -185,9 +185,6 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
 .site{display:block;background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:0 7px 23px rgba(53,35,183,.08);transition:transform .25s,box-shadow .25s}
 .site:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
 .site.hide{display:none}
-.site-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;background:var(--lav)}
-.site-bar i{width:9px;height:9px;border-radius:50%;background:var(--purple);opacity:.35}
-.site-bar span{margin-inline-start:8px;font-size:11px;color:var(--purple);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:ltr}
 .site-shot{aspect-ratio:16/10;overflow:hidden;background:#eee}
 .site-shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s}
 .site:hover .site-shot img{transform:scale(1.04)}
@@ -507,11 +504,11 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
   </div>
 </section>
 
-<!-- SITES -->
+<!-- WEBSITE EXAMPLES -->
 <section class="sec sites" id="sites" data-sec="sites">
   <div class="wrap">
-    <h2 class="h2 up rv" data-i18n="sites_h">Websites I build</h2>
-    <p class="sub rv" data-i18n="sites_sub">Good ads need a page that sells. Store and landing page examples I built. Tap any one to open the live site.</p>
+    <h2 class="h2 up rv" data-i18n="sites_h">Website examples</h2>
+    <p class="sub rv" data-i18n="sites_sub">Good ads need a page that sells. Examples of the store and landing pages I can create for you. Tap any one to open it.</p>
     <div class="site-grid" id="siteGrid"></div>
     <div class="sites-more rv">
       <button class="btn btn-dark" id="sitesMore"><span data-i18n="sites_more">Show all 15</span></button>
@@ -635,7 +632,7 @@ const I18N = {
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
   work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
   on_ig:"Watch on Instagram ↗", zoom:"View full size ↗", swipe:"Swipe to see the full picture",
-  sites_h:"Websites I build", sites_sub:"Good ads need a page that sells. Store and landing page examples I built. Tap any one to open the live site.",
+  sites_h:"Website examples", sites_sub:"Good ads need a page that sells. Examples of the store and landing pages I can create for you. Tap any one to open it.",
   sites_more:"Show all 15", sites_all:"Open the full gallery",
   cat:{food:"Food",spa:"Spa",pets:"Pets",furniture:"Furniture",skincare:"Skincare",florist:"Florist",health:"Health",electronics:"Electronics",fitness:"Fitness",kids:"Kids",beauty:"Beauty",fashion:"Fashion"},
   brands_k:"Brands I've grown", gal_k:"Real students from the campaign", visit_site:"Visit the store",
@@ -704,7 +701,7 @@ const I18N = {
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
   work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
   on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗", swipe:"اسحب عشان تشوف الصورة كاملة",
-  sites_h:"مواقع أبنيها", sites_sub:"الإعلان الزين يحتاج صفحة تبيع. أمثلة لمتاجر وصفحات هبوط سويتها. اضغط على أي وحدة عشان تفتح الموقع.",
+  sites_h:"أمثلة مواقع", sites_sub:"الإعلان الزين يحتاج صفحة تبيع. أمثلة على المتاجر وصفحات الهبوط اللي أقدر أسويها لك. اضغط على أي وحدة عشان تفتحها.",
   sites_more:"شوف الـ15 كلها", sites_all:"افتح المعرض كامل",
   cat:{food:"أكل",spa:"سبا",pets:"حيوانات أليفة",furniture:"أثاث",skincare:"عناية بالبشرة",florist:"ورد",health:"صحة",electronics:"إلكترونيات",fitness:"رياضة",kids:"أطفال",beauty:"جمال",fashion:"أزياء"},
   brands_k:"براندات كبّرتها", gal_k:"طلاب حقيقيين من الحملة", visit_site:"زور المتجر",
@@ -763,7 +760,6 @@ function renderSites(){
   const t = I18N[lang];
   document.getElementById("siteGrid").innerHTML = SITES.map(([id,name,cat],i)=>`
     <a class="site ${!sitesOpen && i>=6 ? "hide" : ""}" href="https://jameellzx.github.io/websites-examples/${id}/" target="_blank" rel="noopener">
-      <div class="site-bar"><i></i><i></i><i></i><span>jameellzx.github.io/${id}</span></div>
       <div class="site-shot"><img src="sites/${id}.webp" alt="${name} website" loading="lazy"></div>
       <div class="site-meta"><b>${name}</b><span class="pill">${t.cat[cat]}</span></div>
     </a>`).join("");
