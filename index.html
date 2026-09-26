@@ -174,6 +174,9 @@ html[dir=rtl] .navbtn svg{transform:scaleX(-1)}
   .reel{flex:none}
 }
 
+/* case studies sit right under the ad wall: share its dark band */
+#work + #cases{padding-top:20px}
+
 /* brands band */
 .brands{background:var(--cream);border-top:1px solid rgba(36,36,35,.08);padding:26px 0}
 .brands-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 28px}
@@ -311,7 +314,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 
 <main id="top">
 <!-- HERO -->
-<section class="hero">
+<section class="hero" data-sec="hero">
   <div class="wrap hero-grid">
     <div class="rv">
       <p class="eyebrow" data-i18n-html="eyebrow">Performance Media Strategist · <b>Kuwait</b></p>
@@ -339,7 +342,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- BRANDS -->
-<section class="brands" aria-label="Brands">
+<section class="brands" aria-label="Brands" data-sec="brands">
   <div class="wrap brands-in">
     <p class="brands-k" data-i18n="brands_k">Brands I've grown</p>
     <a class="brand" href="https://www.instagram.com/jaribacademy/" target="_blank" rel="noopener">
@@ -354,10 +357,10 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+<div class="marquee" aria-hidden="true" data-sec="marquee"><div class="track" id="track"></div></div>
 
 <!-- PROCESS -->
-<section class="sec lavsec" id="process">
+<section class="sec lavsec" id="process" data-sec="process">
   <div class="wrap">
     <h2 class="h2 up rv" data-i18n="proc_h">The creative system</h2>
     <p class="sub rv" data-i18n="proc_sub">Meta now picks who sees your ad based on the video itself. So a video built for one buyer finds that buyer.</p>
@@ -374,7 +377,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- SERVICES -->
-<section class="sec dark" id="services">
+<section class="sec dark" id="services" data-sec="services">
   <div class="wrap">
     <h2 class="h2 rv" data-i18n="svc_h">Creative that drives real sales</h2>
     <p class="sub rv" data-i18n="svc_sub">One person from idea to results. No hand-offs, nothing lost in translation.</p>
@@ -391,7 +394,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- STATS -->
-<section class="stats" id="results" aria-label="Results">
+<section class="stats" id="results" aria-label="Results" data-sec="results">
   <div class="stat rv"><div class="big" data-count="10368" data-suffix=" KD">0</div><div class="lbl" data-i18n="st1">Revenue driven</div><div class="src" data-i18n="st1s">Jarib Academy + Doki Doki</div></div>
   <div class="stat rv"><div class="big" data-count="14" data-suffix="x">0</div><div class="lbl" data-i18n="st2">Return on ad spend</div><div class="src" data-i18n="st2s">Jarib Academy, 207 KD → 2,900 KD</div></div>
   <div class="stat rv"><div class="big" data-count="1.43" data-prefix="$" data-dec="2">0</div><div class="lbl" data-i18n="st3">Cost per lead</div><div class="src" data-i18n="st3s">Best Jarib ad, 149 messages</div></div>
@@ -399,7 +402,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- AD WALL -->
-<section class="sec dark" id="work">
+<section class="sec dark" id="work" data-sec="work">
   <div class="wrap">
     <h2 class="h2 rv" data-i18n="work_h">Ads I made</h2>
     <p class="sub rv" data-i18n="work_sub">Real ads, real results. Tap to watch with sound.</p>
@@ -415,7 +418,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- CASE STUDIES -->
-<section class="sec dark" style="padding-top:20px">
+<section class="sec dark" id="cases" data-sec="cases">
   <div class="wrap">
     <h2 class="h2 rv" data-i18n="cs_h">Case studies</h2>
     <p class="sub rv" data-i18n="cs_sub">How the system turned small budgets into real revenue.</p>
@@ -478,7 +481,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- PROOF -->
-<section class="sec lavsec" id="proof">
+<section class="sec lavsec" id="proof" data-sec="proof">
   <div class="wrap">
     <h2 class="h2 up rv" data-i18n="pr_h">Don't take my word for it</h2>
     <p class="sub rv" data-i18n="pr_sub">Real screenshots from the ad accounts and the store. Tap any one to see it full size.</p>
@@ -507,7 +510,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 <dialog class="lb" id="lb"><button aria-label="Close" id="lbClose">×</button><div class="frame" id="lbFrame"><div class="inner" id="lbInner"><img id="lbImg" alt=""></div></div><div class="lb-hint" id="lbHint"><span>←</span><span class="hand">👆</span><span data-i18n="swipe">Swipe to see the full picture</span><span>→</span></div></dialog>
 
 <!-- ABOUT -->
-<section class="sec" id="about">
+<section class="sec" id="about" data-sec="about">
   <div class="wrap about">
     <div class="photo rv"><img src="photos/jameel.jpg" alt="Jameel Hilal" loading="lazy"><span class="photo-tag" data-i18n="photo_tag">Performance Media Strategist</span></div>
     <div class="rv">
@@ -521,7 +524,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- FAQ -->
-<section class="sec purple" id="faq">
+<section class="sec purple" id="faq" data-sec="faq">
   <div class="wrap">
     <h2 class="h2 rv" data-i18n="faq_h">Frequently asked questions</h2>
     <div class="faq">
@@ -535,7 +538,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 </section>
 
 <!-- FINAL CTA -->
-<section class="final">
+<section class="final" data-sec="final">
   <span class="spark" style="top:22%;inset-inline-start:16%">✦</span><span class="spark" style="bottom:26%;inset-inline-end:18%">✦</span>
   <div class="wrap rv">
     <h2 data-i18n-html="final_h">Lower your cost per sale<br><u>with ads that speak to your buyer</u></h2>
@@ -809,6 +812,19 @@ const io = new IntersectionObserver(es=>es.forEach(e=>{
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 document.getElementById("yr").textContent = new Date().getFullYear();
 applyLang();
+
+// Section arranger (arrange.html) preview hook: only acts when this page is framed.
+if (window.parent !== window) {
+  const main = document.querySelector("main");
+  const secs = () => [...main.querySelectorAll(":scope > [data-sec]")];
+  window.addEventListener("message", e => {
+    const d = e.data;
+    if (!d || d.type !== "arrange" || !Array.isArray(d.order)) return;
+    d.order.forEach(id => { const el = main.querySelector(`:scope > [data-sec="${id}"]`); if (el) main.appendChild(el); });
+    secs().forEach(el => { el.style.display = (d.hidden || []).includes(el.dataset.sec) ? "none" : ""; el.classList && el.querySelectorAll(".rv").forEach(r => r.classList.add("in")); if (el.classList.contains("rv")) el.classList.add("in"); });
+  });
+  window.parent.postMessage({ type: "sections", ids: secs().map(el => el.dataset.sec) }, "*");
+}
 </script>
 </body>
 </html>
