@@ -318,6 +318,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
 /* reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
+[hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 
 /* floating whatsapp */
@@ -797,7 +798,7 @@ function renderWall(){
         <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
         <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
       </div>
-      <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4>${title}</h4><p>${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
+      <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4 data-ed="ad.${a.id}.1">${title}</h4><p data-ed="ad.${a.id}.2">${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
     </div>`;}).join("");
   wall.innerHTML = one(false) + one(true);
   wall.querySelectorAll(".reel video").forEach(v=>{
@@ -942,17 +943,47 @@ document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 document.getElementById("yr").textContent = new Date().getFullYear();
 applyLang();
 
-// Section arranger (arrange.html) preview hook: only acts when this page is framed.
+// Site editor (arrange.html) preview hook: only acts when this page is framed.
 if (window.parent !== window) {
-  const main = document.querySelector("main");
+  const main = document.querySelector("main"), parentMsg = m => window.parent.postMessage(m, "*");
   const secs = () => [...main.querySelectorAll(":scope > [data-sec]")];
-  window.addEventListener("message", e => {
-    const d = e.data;
-    if (!d || d.type !== "arrange" || !Array.isArray(d.order)) return;
-    d.order.forEach(id => { const el = main.querySelector(`:scope > [data-sec="${id}"]`); if (el) main.appendChild(el); });
-    secs().forEach(el => { el.style.display = (d.hidden || []).includes(el.dataset.sec) ? "none" : ""; el.classList && el.querySelectorAll(".rv").forEach(r => r.classList.add("in")); if (el.classList.contains("rv")) el.classList.add("in"); });
+  const keyOf = el => el.dataset.i18n || el.dataset.i18nHtml || el.dataset.ed;
+  const edits = () => [...document.querySelectorAll("[data-i18n],[data-i18n-html],[data-ed]")].filter(el => !el.closest("[data-clone]"));
+  let editing = false;
+  const css = document.createElement("style");
+  css.textContent = `.editing [data-i18n],.editing [data-i18n-html],.editing [data-ed]{outline:2px dashed rgba(96,126,162,.7);outline-offset:3px;border-radius:4px;cursor:text}
+    .editing [data-i18n]:hover,.editing [data-i18n-html]:hover,.editing [data-ed]:hover{outline-color:#e0a83a}
+    .editing [contenteditable]:focus{outline:3px solid #e0a83a;background:rgba(224,168,58,.12)}
+    .editing .changed{outline-color:#3aa35c!important}`;
+  document.head.appendChild(css);
+  function setEditable(){
+    document.documentElement.classList.toggle("editing", editing);
+    edits().forEach(el => { if (editing) el.setAttribute("contenteditable", el.dataset.i18nHtml ? "true" : "plaintext-only"); else el.removeAttribute("contenteditable"); });
+  }
+  const clean = el => el.dataset.i18nHtml
+    ? el.innerHTML.replace(/<(?!\/?(b|u|br|span)\b)[^>]*>/gi, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim()
+    : el.textContent.replace(/\s+/g, " ").trim();
+  document.addEventListener("click", e => { if (editing && e.target.closest("[contenteditable]")) { e.preventDefault(); } }, true);
+  document.addEventListener("keydown", e => { if (editing && e.key === "Enter" && e.target.closest("[contenteditable]")) { e.preventDefault(); e.target.blur(); } });
+  document.addEventListener("focusout", e => {
+    const el = e.target.closest && e.target.closest("[contenteditable]"); if (!el) return;
+    const key = keyOf(el), value = clean(el), t = I18N[lang];
+    if (key.startsWith("ad.")) { const [, id, i] = key.split("."); if (t.ad[id][+i] === value) return; t.ad[id][+i] = value;
+      document.querySelectorAll(`[data-ed="${key}"]`).forEach(x => { if (x !== el) x.textContent = value; }); }
+    else { if (t[key] === value) return; t[key] = value; }
+    el.classList.add("changed");
+    parentMsg({ type: "text", lang, key, value });
   });
-  window.parent.postMessage({ type: "sections", ids: secs().map(el => el.dataset.sec) }, "*");
+  // re-renders (language switch, carousels) must keep edit mode on
+  new MutationObserver(() => { if (editing) setEditable(); }).observe(document.body, { childList: true, subtree: true });
+  window.addEventListener("message", e => {
+    const d = e.data; if (!d) return;
+    if (d.type === "edit") { editing = !!d.on; setEditable(); return; }
+    if (d.type !== "arrange" || !Array.isArray(d.order)) return;
+    d.order.forEach(id => { const el = main.querySelector(`:scope > [data-sec="${id}"]`); if (el) main.appendChild(el); });
+    secs().forEach(el => { el.hidden = (d.hidden || []).includes(el.dataset.sec); el.querySelectorAll(".rv").forEach(r => r.classList.add("in")); if (el.classList.contains("rv")) el.classList.add("in"); });
+  });
+  parentMsg({ type: "sections", ids: secs().map(el => el.dataset.sec), hidden: secs().filter(el => el.hidden).map(el => el.dataset.sec) });
 }
 </script>
 </body>
