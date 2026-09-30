@@ -79,9 +79,10 @@ h1 .hl{color:var(--purple)}
 @media(max-width:520px){.f1{inset-inline-start:-4%}.f2{inset-inline-end:-4%}.f3{inset-inline-start:-2%}}
 .dot{position:absolute;border-radius:50%;background:var(--lime);border:2px solid var(--purple);animation:bob 6s ease-in-out infinite}
 .d1{width:26px;height:26px;top:-10px;inset-inline-end:14%}.d2{width:18px;height:18px;bottom:-6px;inset-inline-end:30%;animation-delay:-2s}
-.sound{position:absolute;bottom:22px;inset-inline-end:22px;z-index:4;background:rgba(14,20,28,.8);color:#fff;border:0;border-radius:var(--pill);padding:7px 12px;font:600 12px var(--font);cursor:pointer}
-.playbtn{inset-inline-end:auto;inset-inline-start:22px;width:34px;height:30px;padding:0;display:grid;place-items:center}
-.playbtn svg{width:12px;height:12px;fill:#fff}
+.playbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:4;width:76px;height:76px;border-radius:50%;border:0;background:rgba(14,20,28,.72);display:grid;place-items:center;cursor:pointer;box-shadow:0 0 0 8px rgba(255,255,255,.18);transition:opacity .2s,transform .2s}
+.playbtn:hover{transform:translate(-50%,-50%) scale(1.08)}
+.playbtn svg{width:28px;height:28px;fill:#fff}
+.playbtn.hide{opacity:0;pointer-events:none}
 #heroVid{cursor:pointer}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
@@ -368,9 +369,8 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
     <div class="phone-stage rv">
       <span class="dot d1"></span><span class="dot d2"></span>
       <div class="phone">
-        <video id="heroVid" src="videos/hero.mp4" poster="videos/hero.jpg" autoplay muted loop playsinline preload="metadata"></video>
-        <button class="sound playbtn" id="heroPlay" aria-label="Pause video"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></svg></button>
-        <button class="sound" id="heroSound" data-i18n="sound_on">🔊 Sound on</button>
+        <video id="heroVid" src="videos/hero.mp4" poster="videos/hero.jpg" playsinline preload="metadata"></video>
+        <button class="playbtn" id="heroPlay" aria-label="Play video"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1l8 5-8 5z"/></svg></button>
       </div>
       <div class="float f1"><b>14x</b><span data-i18n="f1">return</span></div>
       <div class="float f2"><b>$1.43</b><span data-i18n="f2">per lead</span></div>
@@ -810,7 +810,7 @@ function renderWall(){
       const card=v.closest(".reel");
       if(v.paused){
         document.querySelectorAll(".reel video").forEach(o=>{if(o!==v){o.pause();o.closest(".reel").classList.remove("playing");}});
-        const hv=document.getElementById("heroVid"); hv.muted=true; setSoundLabel();
+        document.getElementById("heroVid").pause();
         v.muted=false; card.classList.add("playing");
         const p=v.play(); if(p) p.catch(()=>{ v.muted=true; v.play().catch(()=>{}); });
       } else { v.pause(); card.classList.remove("playing"); }
@@ -821,10 +821,6 @@ function renderWall(){
 function applyFilter(f){
   document.querySelectorAll(".reel").forEach(a=>a.classList.toggle("hide", f!=="all" && a.dataset.b!==f));
   document.getElementById("wall").dispatchEvent(new Event("reset"));
-}
-function setSoundLabel(){
-  const hv=document.getElementById("heroVid");
-  document.getElementById("heroSound").textContent = hv.muted ? I18N[lang].sound_on : I18N[lang].sound_off;
 }
 function applyLang(){
   const t = I18N[lang];
@@ -838,7 +834,7 @@ function applyLang(){
   const words = t.marquee.concat(t.marquee);
   document.getElementById("track").innerHTML = words.concat(words).map(w=>`<span>${w}</span>`).join("");
   document.querySelectorAll(".stat .big").forEach(el=>{ if(el.dataset.done) el.textContent = fmt(el, +el.dataset.count); });
-  setSoundLabel(); renderWall(); renderSites();
+  renderWall(); renderSites();
 }
 function fmt(el,n){
   const d=+(el.dataset.dec||0), p=el.dataset.prefix||"";
@@ -850,17 +846,19 @@ document.getElementById("lang").addEventListener("click",()=>{
   try{ localStorage.setItem("jh-lang", lang); }catch(e){}
   applyLang();
 });
-// hero play / pause (button or tap on the video)
+// hero video: stays on its poster until the centre button is pressed, then plays with sound from the start
 (()=>{
-  const hv=document.getElementById("heroVid"), btn=document.getElementById("heroPlay"), path=btn.querySelector("path");
-  const draw=()=>{ const p=hv.paused; path.setAttribute("d", p ? "M2 1l9 5-9 5z" : "M2 1h3v10H2zM7 1h3v10H7z"); btn.setAttribute("aria-label", p ? "Play video" : "Pause video"); };
-  const toggle=()=>{ hv.paused ? hv.play().catch(()=>{}) : hv.pause(); };
+  const hv=document.getElementById("heroVid"), btn=document.getElementById("heroPlay");
+  const draw=()=>btn.classList.toggle("hide", !hv.paused);
+  const toggle=()=>{
+    if(!hv.paused) return hv.pause();
+    document.querySelectorAll(".reel video").forEach(o=>{ o.pause(); o.closest(".reel").classList.remove("playing"); });
+    hv.muted=false; hv.play().catch(()=>{});
+  };
   btn.addEventListener("click",toggle); hv.addEventListener("click",toggle);
-  hv.addEventListener("play",draw); hv.addEventListener("pause",draw); draw();
+  hv.addEventListener("play",draw); hv.addEventListener("pause",draw);
+  hv.addEventListener("ended",()=>{ hv.currentTime=0; hv.load(); draw(); });
 })();
-document.getElementById("heroSound").addEventListener("click",()=>{
-  const hv=document.getElementById("heroVid"); hv.muted=!hv.muted; if(!hv.muted) hv.play(); setSoundLabel();
-});
 document.querySelectorAll(".filt").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".filt").forEach(x=>x.classList.remove("on")); b.classList.add("on"); applyFilter(b.dataset.f);
 }));
