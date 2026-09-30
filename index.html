@@ -80,6 +80,9 @@ h1 .hl{color:var(--purple)}
 .dot{position:absolute;border-radius:50%;background:var(--lime);border:2px solid var(--purple);animation:bob 6s ease-in-out infinite}
 .d1{width:26px;height:26px;top:-10px;inset-inline-end:14%}.d2{width:18px;height:18px;bottom:-6px;inset-inline-end:30%;animation-delay:-2s}
 .sound{position:absolute;bottom:22px;inset-inline-end:22px;z-index:4;background:rgba(14,20,28,.8);color:#fff;border:0;border-radius:var(--pill);padding:7px 12px;font:600 12px var(--font);cursor:pointer}
+.playbtn{inset-inline-end:auto;inset-inline-start:22px;width:34px;height:30px;padding:0;display:grid;place-items:center}
+.playbtn svg{width:12px;height:12px;fill:#fff}
+#heroVid{cursor:pointer}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* marquee */
@@ -358,14 +361,15 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
         <a class="btn btn-dark wa-link" href="#"><span data-i18n="cta_work">Work with me</span> <span class="arrow">→</span></a>
         <div class="badge">
           <svg viewBox="0 0 40 24" aria-hidden="true"><path fill="#0E141C" d="M9.5 3C5 3 2 9.5 2 14.2 2 18 3.9 21 7 21c2.6 0 4.4-2 6.8-6l1.5-2.6 1.4 2.4C19.2 18.9 21.2 21 24 21c3.4 0 5.7-3.2 5.7-7.6C29.7 8.2 26.8 3 22.4 3c-2.5 0-4.4 1.9-6.4 4.9C14 4.9 12 3 9.5 3Zm-.1 3.6c1.5 0 2.8 1.4 4.6 4.3l-1.6 2.6C10.6 16.7 9 18 7.6 18 6.2 18 5.3 16.5 5.3 14c0-3.7 1.9-7.4 4.1-7.4Zm13 0c2.3 0 4 3.3 4 7 0 2.6-.9 4.4-2.6 4.4-1.5 0-2.8-1.6-5-5.4l-.9-1.5c1.7-2.8 3-4.5 4.5-4.5Z"/></svg>
-          <span data-i18n="badge">Meta ads, scripted, filmed<br>&amp; edited by me</span>
+          <span data-i18n="badge">Meta ads, scripted, filmed &amp; edited by me</span>
         </div>
       </div>
     </div>
     <div class="phone-stage rv">
       <span class="dot d1"></span><span class="dot d2"></span>
       <div class="phone">
-        <video id="heroVid" src="videos/jarib-winner.mp4" poster="videos/jarib-winner.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <video id="heroVid" src="videos/hero.mp4" poster="videos/hero.jpg" autoplay muted loop playsinline preload="metadata"></video>
+        <button class="sound playbtn" id="heroPlay" aria-label="Pause video"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></svg></button>
         <button class="sound" id="heroSound" data-i18n="sound_on">🔊 Sound on</button>
       </div>
       <div class="float f1"><b>14x</b><span data-i18n="f1">return</span></div>
@@ -636,7 +640,7 @@ const I18N = {
   eyebrow:"Performance Media Strategist · <b>Kuwait</b>",
   h1:'Video ads that speak to <span class="hl">your buyer</span> and sell',
   lead:"I research your ideal customer, write the script, film it, edit it, and run it on Meta. Then I test angles and scale the winner.",
-  badge:"Meta ads, scripted, filmed<br>&amp; edited by me", sound_on:"🔊 Sound on", sound_off:"🔇 Mute",
+  badge:"Meta ads, scripted, filmed & edited by me", sound_on:"🔊 Sound on", sound_off:"🔇 Mute",
   f1:"return", f2:"per lead", f3:"ROAS best ad",
   marquee:["Research","Script","Film","Edit","Launch","Test","Scale"],
   proc_h:"The creative system", proc_sub:"Meta now picks who sees your ad based on the video itself. So a video built for one buyer finds that buyer.",
@@ -846,6 +850,14 @@ document.getElementById("lang").addEventListener("click",()=>{
   try{ localStorage.setItem("jh-lang", lang); }catch(e){}
   applyLang();
 });
+// hero play / pause (button or tap on the video)
+(()=>{
+  const hv=document.getElementById("heroVid"), btn=document.getElementById("heroPlay"), path=btn.querySelector("path");
+  const draw=()=>{ const p=hv.paused; path.setAttribute("d", p ? "M2 1l9 5-9 5z" : "M2 1h3v10H2zM7 1h3v10H7z"); btn.setAttribute("aria-label", p ? "Play video" : "Pause video"); };
+  const toggle=()=>{ hv.paused ? hv.play().catch(()=>{}) : hv.pause(); };
+  btn.addEventListener("click",toggle); hv.addEventListener("click",toggle);
+  hv.addEventListener("play",draw); hv.addEventListener("pause",draw); draw();
+})();
 document.getElementById("heroSound").addEventListener("click",()=>{
   const hv=document.getElementById("heroVid"); hv.muted=!hv.muted; if(!hv.muted) hv.play(); setSoundLabel();
 });
