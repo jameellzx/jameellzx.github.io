@@ -627,9 +627,9 @@ const ADS = [
   {id:"jarib-winner", brand:"jarib", win:true, ig:"DbCtTpFKKY-"},
   {id:"jarib-coach", brand:"jarib", ig:"DaAN8o5K_0M"},
   {id:"jarib-parents", brand:"jarib", ig:"DZ7xdMuKIK0"},
-  {id:"jarib-likes", brand:"jarib", ig:"DZ-UAnyKL7n"},
-  {id:"jarib-failure", brand:"jarib", ig:"DaBRlMmq_VG"},
-  {id:"doki-cleaver", brand:"doki", win:true, ig:"DT2v602DWX7"},
+  {id:"jarib-likes", brand:"jarib", ig:"DZ-UAnyKL7n", off:true},
+  {id:"jarib-failure", brand:"jarib", ig:"DaBRlMmq_VG", off:true},
+  {id:"doki-cleaver", brand:"doki", win:true, ig:"DT2v602DWX7", off:true},
   {id:"doki-3steps", brand:"doki", ig:"DbGWOVuOCgR"},
   {id:"doki-gift", brand:"doki", ig:"DbGZL-YO8Mj"},
   {id:"doki-broke", brand:"doki", ig:"DbG0lbQO1HJ"},
@@ -802,7 +802,7 @@ function renderSites(){
 }
 function renderWall(){
   const t = I18N[lang], wall = document.getElementById("wall");
-  const one = clone => ADS.map(a=>{
+  const one = clone => ADS.filter(a=>!a.off).map(a=>{
     const [brand,title,desc] = t.ad[a.id];
     return `<div class="reel" data-b="${a.brand}" ${clone?'data-clone aria-hidden="true"':''}>
       <div class="phone" style="position:relative">
@@ -996,10 +996,12 @@ if (window.parent !== window) {
   window.addEventListener("message", e => {
     const d = e.data; if (!d) return;
     if (d.type === "edit") { editing = !!d.on; setEditable(); return; }
+    if (d.type === "ads") { ADS.forEach(a => { a.off = (d.hidden || []).includes(a.id); }); renderWall(); document.querySelector('.filt[data-f="all"]')?.click(); return; }
     if (d.type !== "arrange" || !Array.isArray(d.order)) return;
     d.order.forEach(id => { const el = main.querySelector(`:scope > [data-sec="${id}"]`); if (el) main.appendChild(el); });
     secs().forEach(el => { el.hidden = (d.hidden || []).includes(el.dataset.sec); el.querySelectorAll(".rv").forEach(r => r.classList.add("in")); if (el.classList.contains("rv")) el.classList.add("in"); });
   });
+  parentMsg({ type: "ads", list: ADS.map(a => ({ id: a.id, brand: I18N.en.ad[a.id][0], title: I18N.en.ad[a.id][1], poster: `videos/${a.id}.jpg`, off: !!a.off })) });
   parentMsg({ type: "sections", ids: secs().map(el => el.dataset.sec), hidden: secs().filter(el => el.hidden).map(el => el.dataset.sec) });
 }
 </script>
