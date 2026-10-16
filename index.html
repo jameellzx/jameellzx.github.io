@@ -573,6 +573,7 @@ footer{background:var(--ink);color:var(--white);padding:56px 0 30px}
       <button class="filt on" data-f="all" data-i18n="f_all">All</button>
       <button class="filt" data-f="jarib" data-i18n="f_jarib">Jarib Academy</button>
       <button class="filt" data-f="doki" data-i18n="f_doki">Doki Doki</button>
+      <button class="filt" data-f="fullout" data-i18n="f_fullout">Fullout Studio</button>
     </div>
   </div>
   <div class="carousel wall-wrap">
@@ -631,7 +632,9 @@ const ADS = [
   {id:"doki-cleaver", brand:"doki", win:true, ig:"DT2v602DWX7"},
   {id:"doki-3steps", brand:"doki", ig:"DbGWOVuOCgR"},
   {id:"doki-gift", brand:"doki", ig:"DbGZL-YO8Mj"},
-  {id:"doki-broke", brand:"doki", ig:"DbG0lbQO1HJ"}
+  {id:"doki-broke", brand:"doki", ig:"DbG0lbQO1HJ"},
+  {id:"fullout-demo", brand:"fullout"},
+  {id:"fullout-booking", brand:"fullout"}
 ];
 const I18N = {
  en:{
@@ -659,7 +662,7 @@ const I18N = {
   x1:"SEO", x2:"Content strategy", x3:"Content calendars", x4:"AI training (Claude & AI agents)",
   st1:"Revenue driven", st1s:"Jarib Academy + Doki Doki", st2:"Return on ad spend", st2s:"Jarib Academy, 207 KD → 2,900 KD",
   st3:"Cost per lead", st3s:"Best Jarib ad, 149 messages", st4:"Orders shipped", st4s:"Doki Doki, built from zero",
-  work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki",
+  work_h:"Ads I made", work_sub:"Real ads, real results. Tap to watch with sound.", f_all:"All", f_jarib:"Jarib Academy", f_doki:"Doki Doki", f_fullout:"Fullout Studio",
   on_ig:"Watch on Instagram ↗", zoom:"View full size ↗", swipe:"Swipe to see the full picture",
   sites_h:"Website examples", sites_sub:"Good ads need a page that sells. Examples of the store and landing pages I can create for you. Tap any one to open it.",
   sites_more:"Show all 15", sites_all:"Open the full gallery",
@@ -679,7 +682,9 @@ const I18N = {
    "doki-cleaver":["Doki Doki","The cleaver hook","6.9x ROAS. A pattern interrupt that stops the scroll."],
    "doki-3steps":["Doki Doki","Don't buy until you know this","3-step how-to angle on the duplicates pain."],
    "doki-gift":["Doki Doki","The dud gift","Gifting angle: a guaranteed gift, every time."],
-   "doki-broke":["Doki Doki","Broke on duplicates","Money angle: the system is built so shops profit."]},
+   "doki-broke":["Doki Doki","Broke on duplicates","Money angle: the system is built so shops profit."],
+   "fullout-demo":["Fullout Studio","Go fullout","Spec ad for a Kuwait dance studio: the fear in your head vs. real life."],
+   "fullout-booking":["Fullout Studio","Book in seconds","Spec ad: motion graphics walkthrough of booking a class on their site."]},
   cs_h:"Case studies", cs_sub:"How the system turned small budgets into real revenue.",
   cs1k:"14x return", cs1h:"Jarib Academy: filling a skate bootcamp from Instagram", cs1w:"Freelance · Kuwait · Jun–Aug 2026",
   k_msgs:"parent inquiries", k_students:"students enrolled", k_cpl:"cost per lead (best ad)",
@@ -728,7 +733,7 @@ const I18N = {
   x1:"تحسين محركات البحث SEO", x2:"استراتيجية المحتوى", x3:"جداول المحتوى", x4:"تدريب الذكاء الاصطناعي (Claude والوكلاء الذكيين)",
   st1:"مبيعات حققتها الإعلانات", st1s:"أكاديمية جرّب + دوكي دوكي", st2:"العائد على الإنفاق الإعلاني", st2s:"أكاديمية جرّب، 207 د.ك ← 2,900 د.ك",
   st3:"تكلفة العميل المحتمل", st3s:"أفضل إعلان لجرّب، 149 رسالة", st4:"طلب تم توصيله", st4s:"دوكي دوكي، من الصفر",
-  work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي",
+  work_h:"إعلانات سويتها", work_sub:"إعلانات حقيقية ونتائج حقيقية. اضغط عشان تشوفها بالصوت.", f_all:"الكل", f_jarib:"أكاديمية جرّب", f_doki:"دوكي دوكي", f_fullout:"فول آوت ستوديو",
   on_ig:"شوفه على إنستقرام ↗", zoom:"كبّر الصورة ↗", swipe:"اسحب عشان تشوف الصورة كاملة",
   sites_h:"أمثلة مواقع", sites_sub:"الإعلان الزين يحتاج صفحة تبيع. أمثلة على المتاجر وصفحات الهبوط اللي أقدر أسويها لك. اضغط على أي وحدة عشان تفتحها.",
   sites_more:"شوف الـ15 كلها", sites_all:"افتح المعرض كامل",
@@ -748,7 +753,9 @@ const I18N = {
    "doki-cleaver":["دوكي دوكي","هوك الساطور","عائد 6.9x. مشهد غير متوقع يوقف السكرول."],
    "doki-3steps":["دوكي دوكي","لا تشترين قبل ما تعرفين هذا","زاوية ٣ خطوات عن مشكلة التكرار."],
    "doki-gift":["دوكي دوكي","الهدية الخايبة","زاوية الهدايا: هدية مضمونة كل مرة."],
-   "doki-broke":["دوكي دوكي","أفلست من التكرار","زاوية الفلوس: النظام مصمم عشان المحلات تربح."]},
+   "doki-broke":["دوكي دوكي","أفلست من التكرار","زاوية الفلوس: النظام مصمم عشان المحلات تربح."],
+   "fullout-demo":["فول آوت ستوديو","Go fullout","إعلان تجريبي لستوديو رقص بالكويت: الخوف اللي براسك مقابل الواقع."],
+   "fullout-booking":["فول آوت ستوديو","احجز بثواني","إعلان تجريبي: موشن قرافيكس يشرح حجز الكلاس من موقعهم."]},
   cs_h:"دراسات حالة", cs_sub:"كيف حوّل النظام ميزانيات صغيرة لمبيعات حقيقية.",
   cs1k:"عائد 14x", cs1h:"أكاديمية جرّب: فوّلت النادي طلاب من إعلانات الإنستغرام", cs1w:"عمل حر · الكويت · يونيو–أغسطس 2026",
   k_msgs:"استفسار من الأهالي", k_students:"طالب سجّل", k_cpl:"تكلفة العميل المحتمل (أفضل إعلان)",
@@ -802,7 +809,7 @@ function renderWall(){
         <video src="videos/${a.id}.mp4" poster="videos/${a.id}.jpg" playsinline preload="none" loop></video>
         <div class="play"><span><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></div>
       </div>
-      <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4 data-ed="ad.${a.id}.1">${title}</h4><p data-ed="ad.${a.id}.2">${desc}</p><a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a></div>
+      <div class="reel-meta"><span class="pill ${a.win?'win':''}">${a.win?t.win+' · ':''}${brand}</span><h4 data-ed="ad.${a.id}.1">${title}</h4><p data-ed="ad.${a.id}.2">${desc}</p>${a.ig?`<a href="https://www.instagram.com/p/${a.ig}/" target="_blank" rel="noopener">${t.on_ig}</a>`:''}</div>
     </div>`;}).join("");
   wall.innerHTML = one(false) + one(true);
   wall.querySelectorAll(".reel video").forEach(v=>{
